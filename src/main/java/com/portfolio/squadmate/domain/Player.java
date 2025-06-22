@@ -1,8 +1,6 @@
 package com.portfolio.squadmate.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
@@ -15,6 +13,7 @@ public class Player extends User{
 
     @Setter
     @Getter
+    @Enumerated(EnumType.STRING)
     private Position position;
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)

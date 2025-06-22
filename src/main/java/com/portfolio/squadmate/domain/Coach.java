@@ -11,6 +11,5 @@ import lombok.Setter;
 @Entity
 public class Coach extends User {
     @OneToOne(fetch = FetchType.LAZY)
-
     private Team team;
 }
