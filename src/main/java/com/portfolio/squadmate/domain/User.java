@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "application_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +26,6 @@ public class User {
     private LocalDate birthDate;
 
     private String profileImagePath;
+
+    public User() {}
 }
