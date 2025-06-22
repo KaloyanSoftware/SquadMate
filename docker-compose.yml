@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:17.2-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: 'squadMate'
+      POSTGRES_USER: 'spring'
+      POSTGRES_PASSWORD: 'spring'
+    ports:
+      - '5434:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  test-db:
+    image: postgres:17.2-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: 'squadMate-test'
+      POSTGRES_USER: 'test'
+      POSTGRES_PASSWORD: 'test'
+    ports:
+      - '5435:5432'
+volumes:
+  db-data:

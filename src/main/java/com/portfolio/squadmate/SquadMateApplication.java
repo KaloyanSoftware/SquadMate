@@ -9,5 +9,4 @@ public class SquadMateApplication {
     public static void main(String[] args) {
         SpringApplication.run(SquadMateApplication.class, args);
     }
-
 }
