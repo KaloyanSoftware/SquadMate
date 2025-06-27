@@ -20,4 +20,7 @@ public class Team {
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<TeamMatch> matchParticipations;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private Coach coach;
 }

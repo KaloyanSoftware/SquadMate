@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
 <div th:fragment="coach-navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="bi bi-football me-2"></i>
-            <span class="fs-5 fw-bold">SquadMate</span>
-        </a>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow px-4">
+        <div class="d-flex align-items-center gap-3">
+            <a class="navbar-brand d-flex align-items-center mb-0" th:href="@{/coach/home}">
+                <i class="bi bi-incognito"></i>
+                <span class="fs-4 fw-semibold m-2">SquadMate</span>
+            </a>
+            <a class="btn btn-outline-light" th:href="@{/team}">Team Manager</a>
+        </div>
         <div class="ms-auto">
             <div class="dropdown">
                 <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
