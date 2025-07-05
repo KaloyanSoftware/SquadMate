@@ -16,6 +16,8 @@ VALUES (
 INSERT INTO coach (id, team_id)
 VALUES (1,1);
 
+UPDATE team SET coach_id = 1 WHERE id = 1;
+
 -- pass: player1, player2, player3
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
 VALUES

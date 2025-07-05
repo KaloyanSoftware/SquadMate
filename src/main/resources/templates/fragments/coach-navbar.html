@@ -1,33 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <title>Coach Navbar</title>
     <meta charset="UTF-8">
+    <title>Coach Navbar</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-<div th:fragment="coach-navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow px-4">
-        <div class="d-flex align-items-center gap-3">
-            <a class="navbar-brand d-flex align-items-center mb-0" th:href="@{/coach/home}">
-                <i class="bi bi-incognito"></i>
-                <span class="fs-4 fw-semibold m-2">SquadMate</span>
-            </a>
-            <a class="btn btn-outline-light" th:href="@{/team}">Team Manager</a>
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-success shadow px-4">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" th:href="@{/coach/home}">
+            <i class="bi bi-incognito"></i>
+            <span class="fs-4 fw-semibold ms-2">SquadMate</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#coachNavbarNav" aria-controls="coachNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="coachNavbarNav">
+            <ul class="navbar-nav me-auto ms-3">
+                <li class="nav-item">
+                    <a class="btn btn-outline-light fw-semibold" th:href="@{/coach/teamManager}">Team Manager</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <!-- If the user is NOT logged in -->
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-outline-light fw-semibold" th:href="@{/login}">Login</a>
+                </li>
+
+                <!-- If the user IS logged in -->
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle text-white fw-semibold"
+                       href="#"
+                       id="coachUserDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Hi, <span sec:authentication="name"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="coachUserDropdown">
+                        <li>
+                            <form th:action="@{/logout}" method="post" class="dropdown-item p-0">
+                                <button type="submit" class="btn btn-link dropdown-item text-danger px-3 py-2">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="ms-auto">
-            <div class="dropdown">
-                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Options
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item text-danger" th:href="@{/logout}">Log Out</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+    </div>
+</nav>
 </body>
 </html>

@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.web.util.matcher.RegexRequestMatcher.regexMatcher;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -23,9 +25,9 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/css/**",
                                 "/images/**",
-                                "/webjars/**",
-                                "/**/*.ico")
+                                "/webjars/**")
                         .permitAll()
+                        .requestMatchers(regexMatcher(HttpMethod.GET, ".*\\.ico$")).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(
                         exceptionHandling -> exceptionHandling.authenticationEntryPoint((request, response, authException) -> {

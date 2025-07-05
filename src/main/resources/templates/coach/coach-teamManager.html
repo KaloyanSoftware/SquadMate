@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Team Manager</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:insert="~{fragments/coach-navbar::navigation}"></nav>
+
+<main class="container my-5 flex-grow-1">
+    <h2 class="mb-4" th:text="'Team: ' + ${team.name()}"></h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" th:each="player, iterStat : ${team.playerViewModels()}" th:if="${iterStat.index} < 10">
+            <div class="card h-100 shadow-sm">
+                <img th:src="${player.profileImagePath() != null} ? ${player.profileImagePath()} : '/images/default-profile.png'"
+                     class="card-img-top" alt="Player Image" style="object-fit: cover; height: 200px;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${player.firstName()} + ' ' + ${player.lastName()}"></h5>
+                    <p class="card-text">
+                        <strong>Jersey #:</strong> <span th:text="${player.jerseyNumber()}"></span><br>
+                        <strong>Position:</strong> <span th:text="${player.position()}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collapsible section for additional players -->
+    <div class="collapse mt-4" id="allPlayers">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" th:each="player, iterStat : ${team.playerViewModels()}" th:if="${iterStat.index} >= 10">
+                <div class="card h-100 shadow-sm">
+                    <img th:src="${player.profileImagePath() != null} ? ${player.profileImagePath()} : '/images/default-profile.png'"
+                         class="card-img-top" alt="Player Image" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${player.firstName()} + ' ' + ${player.lastName()}"></h5>
+                        <p class="card-text">
+                            <strong>Jersey #:</strong> <span th:text="${player.jerseyNumber()}"></span><br>
+                            <strong>Position:</strong> <span th:text="${player.position()}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button to toggle additional players -->
+    <div class="text-center mt-4">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#allPlayers"
+                aria-expanded="false" aria-controls="allPlayers">
+            View All Players
+        </button>
+    </div>
+</main>
+
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
 
 </body>
 </html>
