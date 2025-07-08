@@ -1,12 +1,11 @@
 package com.portfolio.squadmate.presentation.webControllers.viewModels;
 
 import com.portfolio.squadmate.domain.Player;
-import com.portfolio.squadmate.domain.Position;
 
-public record PlayerViewModel(String firstName, String lastName, int jerseyNumber, Position position,
+public record PlayerViewModel(String firstName, String lastName, int jerseyNumber, String position, boolean isStarter,
 String profileImagePath) {
     public static PlayerViewModel from(final Player player){
         return new PlayerViewModel(player.getFirstName(), player.getLastName(),
-                player.getJerseyNumber(), player.getPosition(), player.getProfileImagePath());
+                player.getJerseyNumber(), player.getPosition().name(), player.isStarter(), player.getProfileImagePath());
     }
 }

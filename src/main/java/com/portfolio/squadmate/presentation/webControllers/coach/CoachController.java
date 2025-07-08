@@ -31,4 +31,9 @@ public class CoachController {
         return modelAndView;
     }
 
+    @GetMapping("/addPlayer")
+    public ModelAndView showAddPlayer(){
+        return new ModelAndView("coach/coach-add-player");
+    }
+
 }

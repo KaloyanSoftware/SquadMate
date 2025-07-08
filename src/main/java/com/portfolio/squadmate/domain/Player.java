@@ -25,4 +25,8 @@ public class Player extends User{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private Team team;
+
+    @Getter
+    @Setter
+    private boolean isStarter;
 }
