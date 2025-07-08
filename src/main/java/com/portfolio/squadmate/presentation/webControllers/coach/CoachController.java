@@ -1,5 +1,6 @@
 package com.portfolio.squadmate.presentation.webControllers.coach;
 
+import com.portfolio.squadmate.domain.Position;
 import com.portfolio.squadmate.presentation.webControllers.viewModels.TeamWithPlayersViewModel;
 import com.portfolio.squadmate.security.CustomUserDetails;
 import com.portfolio.squadmate.service.TeamService;
@@ -32,8 +33,15 @@ public class CoachController {
     }
 
     @GetMapping("/addPlayer")
-    public ModelAndView showAddPlayer(){
-        return new ModelAndView("coach/coach-add-player");
+    public ModelAndView showAddPlayer(@AuthenticationPrincipal final CustomUserDetails customUserDetails) {
+        final ModelAndView modelAndView = new ModelAndView("coach/coach-add-player");
+
+        modelAndView.addObject("availableJerseyNumbers",teamService
+                .findByCoachId(customUserDetails.getId()).getAvailableJerseyNumbers());
+
+        modelAndView.addObject("positions", Position.values());
+
+        return modelAndView;
     }
 
 }

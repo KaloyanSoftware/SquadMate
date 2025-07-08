@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Player</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav th:insert="~{fragments/coach-navbar::navigation}"></nav>
+
+<main class="container my-5 flex-grow-1">
+    <h2 class="text-center mb-4 text-success">Add Player to Team</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-success">
+                <div class="card-body">
+                    <form id="addPlayerForm" class="needs-validation" novalidate>
+
+                        <!-- Player ID -->
+                        <div class="mb-3">
+                            <label for="playerId" class="form-label">Player ID</label>
+                            <input type="text" class="form-control" id="playerId" name="playerId" required>
+                            <div class="invalid-feedback">Player ID is required.</div>
+                        </div>
+
+                        <!-- Jersey Number -->
+                        <div class="mb-3">
+                            <label for="jerseyNumber" class="form-label">Jersey Number</label>
+                            <select class="form-select" id="jerseyNumber" name="jerseyNumber" required>
+                                <option value="" disabled selected>Select a number</option>
+                                <option th:each="number : ${availableJerseyNumbers}"
+                                        th:value="${number}"
+                                        th:text="${number}"></option>
+                            </select>
+                            <div class="invalid-feedback">Please select a jersey number.</div>
+                        </div>
+
+                        <!-- Position -->
+                        <div class="mb-3">
+                            <label for="position" class="form-label">Position</label>
+                            <select class="form-select" id="position" name="position" required>
+                                <option value="" disabled selected>Select a position</option>
+                                <option th:each="pos : ${positions}"
+                                        th:value="${pos}"
+                                        th:text="${pos}"></option>
+                            </select>
+                            <div class="invalid-feedback">Please select a position.</div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button type="submit" id="submitBtn" class="btn btn-success">Add Player</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
 
 </body>
 </html>

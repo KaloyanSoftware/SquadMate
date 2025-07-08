@@ -57,5 +57,7 @@ INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
 (13, 12, 'GOALKEEPER', FALSE, 1),
 (14, 13, 'CENTER_BACK', FALSE, 1),
 (15, 14, 'CENTRAL_MIDFIELDER', FALSE, 1),
-(16, 15, 'LEFT_WINGER', FALSE, 1),
-(17, 16, 'STRIKER', FALSE, 1);
+(16, 15, 'LEFT_WINGER', FALSE, 1);
+
+INSERT INTO player (id, is_starter, jersey_number, position) VALUES
+                            (17, FALSE, 1,'GOALKEEPER');

@@ -21,7 +21,6 @@ public class Player extends User{
     private List<MatchAvailability> matchAvailabilities;
 
     @Getter
-    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", referencedColumnName = "id")
     private Team team;
@@ -29,4 +28,9 @@ public class Player extends User{
     @Getter
     @Setter
     private boolean isStarter;
+
+    public void setTeam(final Team team){
+        this.team = team;
+        team.getPlayers().add(this);
+    }
 }

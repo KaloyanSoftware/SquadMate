@@ -3,7 +3,12 @@ package com.portfolio.squadmate.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Setter
 @Getter
@@ -23,4 +28,19 @@ public class Team {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Coach coach;
+
+    public List<Integer> getAvailableJerseyNumbers(){
+        List<Integer> allJerseyNumbers = IntStream.rangeClosed(1, 30)
+                .boxed()
+                .toList();
+
+        Set<Integer> takenJerseyNumbers = players.stream()
+                .map(Player::getJerseyNumber)
+                .collect(Collectors.toSet());
+
+        // Filter and return only the jersey numbers that are NOT taken
+        return allJerseyNumbers.stream()
+                .filter(number -> !takenJerseyNumbers.contains(number))
+                .collect(Collectors.toList());
+    }
 }
