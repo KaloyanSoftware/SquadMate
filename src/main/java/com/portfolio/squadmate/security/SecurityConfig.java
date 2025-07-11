@@ -30,6 +30,7 @@ public class SecurityConfig {
                                 "/",
                                 "/register")
                         .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
                         .requestMatchers(regexMatcher(HttpMethod.GET, ".*\\.ico$")).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(
