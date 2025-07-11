@@ -9,7 +9,7 @@ form.addEventListener("submit",async event =>{
 
     const jsonBody = JSON.stringify({
         jerseyNumber: jerseyNumber,
-        position: position,
+        position: position
     })
 
     try{

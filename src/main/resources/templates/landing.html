@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SquadMate – Smarter Team Management</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<nav th:replace="~{fragments/landing-navbar :: guestNavigation}"></nav>
+
+<header class="py-5 text-center bg-white shadow-sm">
+    <div class="container">
+        <h1 class="display-5 fw-bold text-success">Manage Your Squad Like a Pro</h1>
+        <p class="lead text-muted mt-3">
+            SquadMate is your personal assistant for building, managing, and optimizing your football team.<br>
+            Add players, assign positions and jersey numbers, and take control of your squad with ease.
+        </p>
+        <a href="#reviews" class="btn btn-success btn-lg mt-4">See What Coaches Are Saying</a>
+    </div>
+</header>
+
+<section id="reviews" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center text-success fw-bold mb-4">What Coaches Are Saying</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">“SquadMate helped me build a full squad in minutes. The UI is clean and simple — love it!”</p>
+                        <h6 class="card-subtitle mt-3 text-muted">– Coach Alex, U16 Academy</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">“Before SquadMate, I was juggling spreadsheets. Now everything is organized and accessible.”</p>
+                        <h6 class="card-subtitle mt-3 text-muted">– Coach Miriam, Youth League</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">“Managing starters and substitutes has never been this effortless. A must-have tool!”</p>
+                        <h6 class="card-subtitle mt-3 text-muted">– Coach Diego, High School Team</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 text-center bg-white">
+    <div class="container">
+        <h3 class="fw-bold mb-3 text-success">Ready to take control of your team?</h3>
+        <a class="btn btn-success btn-lg" th:href="@{/register}">Create an Account</a>
+    </div>
+</section>
+
+<footer th:insert="~{fragments/footer :: footer}" class="mt-auto"></footer>
+
+</body>
+</html>

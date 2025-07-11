@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -25,7 +26,9 @@ public class SecurityConfig {
                                 "/js/**",
                                 "/css/**",
                                 "/images/**",
-                                "/webjars/**")
+                                "/webjars/**",
+                                "/",
+                                "/register")
                         .permitAll()
                         .requestMatchers(regexMatcher(HttpMethod.GET, ".*\\.ico$")).permitAll()
                         .anyRequest().authenticated())
@@ -37,6 +40,7 @@ public class SecurityConfig {
                                 response.sendRedirect("/login");
                             }
                         }))
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()

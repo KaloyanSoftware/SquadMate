@@ -24,7 +24,23 @@
         </div>
         <hr>
 
-        <div class="p-4 rounded border border-success bg-success bg-opacity-10">
+        <!-- If team has no players -->
+        <div th:if="${team.playerViewModels().size() == 0}">
+            <div class="alert alert-info text-center py-4 rounded shadow-sm">
+                <i class="bi bi-people-fill fs-3 d-block mb-2 text-secondary"></i>
+                <strong>No players added yet.</strong><br>
+                Start building your team by adding players!
+                <div class="mt-3">
+                    <a class="btn btn-success" th:href="@{/coach/addPlayer}">
+                        <i class="bi bi-plus-circle me-1"></i> Add Player
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- List of starting players (if any) -->
+        <div class="p-4 rounded border border-success bg-success bg-opacity-10"
+             th:if="${team.playerViewModels().size() > 0}">
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
                 <div class="col" th:each="player : ${team.playerViewModels()}" th:if="${player.isStarter()}">
                     <div class="card h-100 shadow-sm border-success bg-light">
@@ -45,7 +61,7 @@
         </div>
     </div>
 
-    <!-- Substitutes Section -->
+    <!-- Substitutes Section (no empty state needed) -->
     <div class="mb-5">
         <div class="d-flex align-items-center mb-3">
             <i class="bi bi-person-lines-fill text-secondary fs-4 me-2"></i>
@@ -54,14 +70,14 @@
         <hr>
 
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
-            <div class="col" th:each="player : ${team.playerViewModels()}"
-                 th:if="${!player.isStarter()}">
+            <div class="col" th:each="player : ${team.playerViewModels()}" th:if="${!player.isStarter()}">
                 <div class="card h-100 shadow-sm border-secondary">
                     <img class="card-img-top img-fluid"
                          th:src="${player.profileImagePath() != null} ? ${player.profileImagePath()} : '/images/download.png'"
                          alt="Substitute">
                     <div class="card-body">
-                        <h6 class="card-title mb-1 text-truncate" th:text="${player.firstName()} + ' ' + ${player.lastName()}"></h6>
+                        <h6 class="card-title mb-1 text-truncate"
+                            th:text="${player.firstName()} + ' ' + ${player.lastName()}"></h6>
                         <p class="card-text small mb-0">
                             <strong>#</strong> <span th:text="${player.jerseyNumber()}"></span><br>
                             <strong>Pos:</strong> <span th:text="${player.position()}"></span>

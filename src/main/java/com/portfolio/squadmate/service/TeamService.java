@@ -3,8 +3,10 @@ package com.portfolio.squadmate.service;
 import com.portfolio.squadmate.domain.Team;
 import com.portfolio.squadmate.repository.TeamRepository;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @Transactional
 public class TeamService {
@@ -15,6 +17,7 @@ public class TeamService {
     }
 
     public Team findByCoachId(final Integer id){
+        log.error("Coach id: {}",id);
         return teamRepository.getTeamWithPlayersByCoachId(id);
     }
 
