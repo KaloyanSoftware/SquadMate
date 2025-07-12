@@ -22,7 +22,7 @@ public class PlayerService{
         this.teamRepository = teamRepository;
     }
 
-    public Player patch(final Integer id, final int jerseyNumber, final Position position, final Integer coachId){
+    public Player addPlayerToTeam(final Integer id, final int jerseyNumber, final Position position, final Integer coachId){
         final Player player = playerRepository.findById(id).orElseThrow();
         final Team team = teamRepository.getTeamWithPlayersByCoachId(coachId);
 
@@ -38,7 +38,7 @@ public class PlayerService{
             player.setTeam(team);
         }
 
+        player.setStarter(true);
         return playerRepository.save(player);
     }
-
 }

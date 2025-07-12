@@ -3,61 +3,98 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Team | SquadMate</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script defer th:src="@{/images/js/create-team.js}"></script>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
 <nav th:replace="~{fragments/coach-navbar::navigation}"></nav>
 
 <main class="container d-flex justify-content-center align-items-center flex-grow-1 py-5">
-    <div class="bg-white p-5 rounded-4 shadow w-100" style="max-width: 600px;">
-        
-        <!-- Header Section -->
-        <div class="text-center mb-4">
-            <div class="mb-3">
-                <i class="bi bi-trophy-fill text-success" style="font-size: 3rem;"></i>
-            </div>
-            <h2 class="text-success fw-bold mb-2">Create Your Team</h2>
-            <p class="text-muted mb-0">Set up your team and start building your squad</p>
-        </div>
+    <div class="row justify-content-center w-100">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+            <!-- Create Team Card -->
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-gradient-primary text-white text-center py-4 rounded-top-4">
+                    <div class="mb-3">
+                        <i class="bi bi-trophy-fill" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="mb-0 fw-bold">Create Your Team</h3>
+                    <p class="mb-0 opacity-75">Set up your team and start building your squad</p>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
+                    <form class="needs-validation" id="createTeamForm" novalidate>
+                        
+                        <!-- Team Name Field -->
+                        <div class="mb-4">
+                            <label for="teamName" class="form-label fw-semibold">
+                                <i class="bi bi-shield-check me-2 text-success"></i>Team Name
+                            </label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-shield-check text-muted"></i>
+                                </span>
+                                <input type="text" 
+                                       class="form-control border-start-0 ps-0" 
+                                       id="teamName" 
+                                       name="teamName" 
+                                       placeholder="Enter your team name"
+                                       required>
+                            </div>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Choose a memorable name that represents your team
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a team name.
+                            </div>
+                        </div>
 
-        <!-- Form -->
-        <form th:action="@{/coach/createTeam}" method="post">
-            
-            <!-- Team Name -->
-            <div class="mb-4">
-                <label for="teamName" class="form-label fw-semibold">
-                    <i class="bi bi-shield-check me-2 text-success"></i>Team Name
-                </label>
-                <input type="text" 
-                       class="form-control form-control-lg" 
-                       id="teamName" 
-                       name="teamName" 
-                       placeholder="Enter your team name"
-                       required>
-                <div class="form-text">
-                    <i class="bi bi-info-circle me-1"></i>
-                    Choose a memorable name that represents your team
+                        <!-- Submit Buttons -->
+                        <div class="d-grid gap-3 mt-5">
+                            <button type="submit" class="btn btn-success btn-lg py-3 fw-bold">
+                                <i class="bi bi-check-circle me-2"></i>Create Team
+                            </button>
+                            <a href="/coach/home" class="btn btn-outline-secondary btn-lg py-3">
+                                <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <!-- Submit Buttons -->
-            <div class="d-grid gap-3 mt-5">
-                <button type="submit" class="btn btn-success btn-lg">
-                    <i class="bi bi-check-circle me-2"></i>Create Team
-                </button>
-                <a href="/coach/home" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left me-2"></i>Back to Home
-                </a>
+            <!-- Help Section -->
+            <div class="mt-4 p-4 bg-white rounded-4 shadow-sm">
+                <div class="d-flex align-items-start">
+                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                        <i class="bi bi-lightbulb text-warning"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-semibold mb-2">Tips for creating your team:</h6>
+                        <ul class="small text-muted mb-0">
+                            <li>Choose a team name that's easy to remember and represents your squad</li>
+                            <li>You can always edit team details later from your dashboard</li>
+                            <li>After creating your team, you'll be able to add players</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </main>
 
 <footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+</style>
 
 </body>
 </html>

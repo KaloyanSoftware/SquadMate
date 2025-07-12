@@ -43,4 +43,9 @@ public class Team {
                 .filter(number -> !takenJerseyNumbers.contains(number))
                 .collect(Collectors.toList());
     }
+
+    public void setCoach(final Coach coach){
+        this.coach = coach;
+        coach.setTeam(this);
+    }
 }

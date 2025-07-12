@@ -1,11 +1,10 @@
 #@no-cookie-jar
 #@no-redirect
-PATCH http://localhost:8080/api/player/17
+POST http://localhost:8080/api/team
 Content-Type: application/json
 Accept: application/json
-Cookie: JSESSIONID=1A106DF5423C2F22235FC20EE515DF62
+Cookie: JSESSIONID=
 
 {
-  "jerseyNumber": 24,
-  "position": "STRIKER"
+  "teamName": "Levski FC"
 }

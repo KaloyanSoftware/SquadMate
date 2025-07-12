@@ -24,13 +24,9 @@ public class ApiPlayerController {
                                            @AuthenticationPrincipal final CustomUserDetails customUserDetails,
                                            @RequestBody final PatchPlayerDTO patchPlayerDTO) {
 
-        final PlayerDTO playerDTO = PlayerDTO.from(playerService.patch(Integer.parseInt(id),
+        final PlayerDTO playerDTO = PlayerDTO.from(playerService.addPlayerToTeam(Integer.parseInt(id),
                 patchPlayerDTO.jerseyNumber(), patchPlayerDTO.position(),
                 customUserDetails.getId()));
-
         return ResponseEntity.status(HttpStatus.OK).body(playerDTO);
     }
-
-
-
 }

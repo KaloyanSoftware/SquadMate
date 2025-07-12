@@ -2,51 +2,93 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SquadMate – Smarter Team Management</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="~{fragments/landing-navbar :: guestNavigation}"></nav>
 
-<header class="py-5 text-center bg-white shadow-sm">
+<!-- Hero Section -->
+<header class="bg-gradient-primary text-white py-5">
     <div class="container">
-        <h1 class="display-5 fw-bold text-success">Manage Your Squad Like a Pro</h1>
-        <p class="lead text-muted mt-3">
-            SquadMate is your personal assistant for building, managing, and optimizing your football team.<br>
-            Add players, assign positions and jersey numbers, and take control of your squad with ease.
-        </p>
-        <a href="#reviews" class="btn btn-success btn-lg mt-4">See What Coaches Are Saying</a>
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-6">
+                <div class="pe-lg-5">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Manage Your Squad Like a <span class="text-warning">Pro</span>
+                    </h1>
+                    <p class="lead mb-4 opacity-75">
+                        SquadMate is your personal assistant for building, managing, and optimizing your football team. 
+                        Add players, assign positions and jersey numbers, and take control of your squad with ease.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <a th:href="@{/register}" class="btn btn-warning btn-lg px-4 py-3 fw-bold">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Get Started Free
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="bi bi-play-circle me-2"></i>See How It Works
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                <div class="position-relative">
+                    <div class="bg-white bg-opacity-10 rounded-4 p-4 backdrop-blur">
+                        <i class="bi bi-trophy-fill text-warning" style="font-size: 8rem;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 
-<section id="reviews" class="py-5 bg-light">
+<!-- Features Section -->
+<section id="features" class="py-5 bg-light">
     <div class="container">
-        <h2 class="text-center text-success fw-bold mb-4">What Coaches Are Saying</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100 border-success shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text">“SquadMate helped me build a full squad in minutes. The UI is clean and simple — love it!”</p>
-                        <h6 class="card-subtitle mt-3 text-muted">– Coach Alex, U16 Academy</h6>
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-3">Why Coaches Choose SquadMate</h2>
+                <p class="lead text-muted">Everything you need to build and manage your dream team</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-people-fill text-success" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Easy Player Management</h5>
+                        <p class="card-text text-muted">Add players with just a few clicks. Assign positions, jersey numbers, and track their performance all in one place.</p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 border-success shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text">“Before SquadMate, I was juggling spreadsheets. Now everything is organized and accessible.”</p>
-                        <h6 class="card-subtitle mt-3 text-muted">– Coach Miriam, Youth League</h6>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-shield-check text-success" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Smart Team Organization</h5>
+                        <p class="card-text text-muted">Organize your starting lineup and substitutes with our intuitive drag-and-drop interface.</p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card h-100 border-success shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text">“Managing starters and substitutes has never been this effortless. A must-have tool!”</p>
-                        <h6 class="card-subtitle mt-3 text-muted">– Coach Diego, High School Team</h6>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
+                    <div class="card-body text-center p-4">
+                        <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="bi bi-graph-up text-success" style="font-size: 2rem;"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Performance Tracking</h5>
+                        <p class="card-text text-muted">Monitor player statistics, track team progress, and make data-driven decisions to improve your squad.</p>
                     </div>
                 </div>
             </div>
@@ -54,14 +96,131 @@
     </div>
 </section>
 
-<section class="py-5 text-center bg-white">
+<!-- Testimonials Section -->
+<section id="reviews" class="py-5 bg-white">
     <div class="container">
-        <h3 class="fw-bold mb-3 text-success">Ready to take control of your team?</h3>
-        <a class="btn btn-success btn-lg" th:href="@{/register}">Create an Account</a>
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold text-success mb-3">Trusted by Coaches Worldwide</h2>
+                <p class="lead text-muted">See what coaches are saying about SquadMate</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-person-fill text-success"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Coach Alex</h6>
+                                <small class="text-muted">U16 Academy</small>
+                            </div>
+                        </div>
+                        <p class="card-text">"SquadMate helped me build a full squad in minutes. The UI is clean and simple — love it!"</p>
+                        <div class="text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-person-fill text-success"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Coach Miriam</h6>
+                                <small class="text-muted">Youth League</small>
+                            </div>
+                        </div>
+                        <p class="card-text">"Before SquadMate, I was juggling spreadsheets. Now everything is organized and accessible."</p>
+                        <div class="text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card h-100 border-success shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="bi bi-person-fill text-success"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Coach Diego</h6>
+                                <small class="text-muted">High School Team</small>
+                            </div>
+                        </div>
+                        <p class="card-text">"Managing starters and substitutes has never been this effortless. A must-have tool!"</p>
+                        <div class="text-warning">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="display-6 fw-bold mb-4">Ready to Transform Your Team Management?</h2>
+                <p class="lead mb-4 opacity-75">Join thousands of coaches who have already upgraded their team management experience.</p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                    <a th:href="@{/register}" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Start Free Today
+                    </a>
+                    <a th:href="@{/login}" class="btn btn-outline-light btn-lg px-5 py-3">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
 <footer th:insert="~{fragments/footer :: footer}" class="mt-auto"></footer>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+.min-vh-75 {
+    min-height: 75vh;
+}
+.hover-lift {
+    transition: transform 0.2s ease-in-out;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+.backdrop-blur {
+    backdrop-filter: blur(10px);
+}
+</style>
 
 </body>
 </html>

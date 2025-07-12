@@ -3,9 +3,9 @@ const form = document.querySelector("#addPlayerForm");
 form.addEventListener("submit",async event =>{
     event.preventDefault();
 
-    const playerId = document.querySelector("#playerId").value;
-    const jerseyNumber = document.querySelector("#jerseyNumber").value;
-    const position = document.querySelector("#position").value;
+    const playerId = document.getElementById("playerId").value.trim();
+    const jerseyNumber = document.getElementById("jerseyNumber").value.trim();
+    const position = document.getElementById("position").value.trim();
 
     const jsonBody = JSON.stringify({
         jerseyNumber: jerseyNumber,
@@ -23,12 +23,16 @@ form.addEventListener("submit",async event =>{
         })
 
         if(response.status === 200){
-            window.location = `/coach/teamManager`;
+            form.reset();
+
+            window.location.href = `/coach/teamManager`;
         }else{
-            alert("Something went wrong when adding a player to the team!")
+            const errorData = await response.json();
+            alert(`Error adding player: ${errorData.message || 'Something went wrong when adding the player!'}`);
         }
 
     }catch (e){
-        alert("Oops, network error!")
+        console.error('Network error:', e);
+        alert("Oops, network error! Please try again.");
     }
 })

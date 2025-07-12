@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome to Squadmate</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
 <body>
-<nav th:fragment="guestNavigation" class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
-      <i class="bi bi-incognito"></i>
-      <span class="fs-4 fw-semibold ms-2">SquadMate</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item me-2">
-          <a class="btn btn-outline-light fw-semibold" th:href="@{/login}">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-light fw-semibold text-success" th:href="@{/register}">Sign Up</a>
-        </li>
-      </ul>
+<nav th:fragment="guestNavigation" class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-sm sticky-top">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center fw-bold" th:href="@{/}">
+            <div class="bg-white bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 40px; height: 40px;">
+                <i class="bi bi-incognito text-white"></i>
+            </div>
+            <span class="fs-4">SquadMate</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item me-2">
+                    <a class="btn btn-outline-light fw-semibold px-3 py-2" th:href="@{/login}">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>Log In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-warning fw-semibold px-4 py-2" th:href="@{/register}">
+                        <i class="bi bi-person-plus me-1"></i>Sign Up
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+</style>
+
 </body>
 </html>

@@ -2,61 +2,123 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Player | SquadMate</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script defer th:src="@{/images/js/add-player-to-team.js}"></script>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-<!-- Navbar -->
-<nav th:insert="~{fragments/coach-navbar::navigation}"></nav>
+<nav th:replace="~{fragments/coach-navbar::navigation}"></nav>
 
-<main class="container my-5 flex-grow-1">
-    <h2 class="text-center mb-4 text-success">Add Player to Team</h2>
-
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm border-success">
-                <div class="card-body">
+<main class="container d-flex justify-content-center align-items-center flex-grow-1 py-5">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+            <!-- Add Player Card -->
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-gradient-primary text-white text-center py-4 rounded-top-4">
+                    <div class="mb-3">
+                        <i class="bi bi-person-plus-fill" style="font-size: 3rem;"></i>
+                    </div>
+                    <h3 class="mb-0 fw-bold">Add Player to Team</h3>
+                    <p class="mb-0 opacity-75">Add a new player to your squad</p>
+                </div>
+                
+                <div class="card-body p-4 p-md-5">
                     <form id="addPlayerForm" class="needs-validation" novalidate>
-
-                        <!-- Player ID -->
-                        <div class="mb-3">
-                            <label for="playerId" class="form-label">Player ID</label>
-                            <input type="text" class="form-control" id="playerId" name="playerId" required>
-                            <div class="invalid-feedback">Player ID is required.</div>
+                        
+                        <!-- Player ID Field -->
+                        <div class="mb-4">
+                            <label for="playerId" class="form-label fw-semibold">
+                                <i class="bi bi-person-badge me-2 text-success"></i>Player ID
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-person-badge text-muted"></i>
+                                </span>
+                                <input type="text" 
+                                       class="form-control border-start-0 ps-0" 
+                                       id="playerId" 
+                                       name="playerId" 
+                                       placeholder="Enter player ID"
+                                       required>
+                            </div>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Enter the unique identifier for the player
+                            </div>
+                            <div class="invalid-feedback">
+                                Player ID is required.
+                            </div>
                         </div>
 
-                        <!-- Jersey Number -->
-                        <div class="mb-3">
-                            <label for="jerseyNumber" class="form-label">Jersey Number</label>
+                        <!-- Jersey Number Field -->
+                        <div class="mb-4">
+                            <label for="jerseyNumber" class="form-label fw-semibold">
+                                <i class="bi bi-123 me-2 text-success"></i>Jersey Number
+                            </label>
                             <select class="form-select" id="jerseyNumber" name="jerseyNumber" required>
                                 <option value="" disabled selected>Select a number</option>
                                 <option th:each="number : ${availableJerseyNumbers}"
                                         th:value="${number}"
                                         th:text="${number}"></option>
                             </select>
-                            <div class="invalid-feedback">Please select a jersey number.</div>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Choose from available jersey numbers
+                            </div>
+                            <div class="invalid-feedback">
+                                Please select a jersey number.
+                            </div>
                         </div>
 
-                        <!-- Position -->
-                        <div class="mb-3">
-                            <label for="position" class="form-label">Position</label>
+                        <!-- Position Field -->
+                        <div class="mb-4">
+                            <label for="position" class="form-label fw-semibold">
+                                <i class="bi bi-geo-alt me-2 text-success"></i>Position
+                            </label>
                             <select class="form-select" id="position" name="position" required>
                                 <option value="" disabled selected>Select a position</option>
                                 <option th:each="pos : ${positions}"
                                         th:value="${pos}"
                                         th:text="${pos}"></option>
                             </select>
-                            <div class="invalid-feedback">Please select a position.</div>
+                            <div class="form-text">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Assign the player's primary position
+                            </div>
+                            <div class="invalid-feedback">
+                                Please select a position.
+                            </div>
                         </div>
 
-                        <!-- Submit -->
-                        <div class="d-grid">
-                            <button type="submit" id="submitBtn" class="btn btn-success">Add Player</button>
+                        <!-- Submit Button -->
+                        <div class="d-grid mb-4">
+                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg py-3 fw-bold">
+                                <i class="bi bi-person-plus me-2"></i>Add Player
+                            </button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="mt-4 p-4 bg-white rounded-4 shadow-sm">
+                <div class="d-flex align-items-start">
+                    <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                        <i class="bi bi-info-circle text-info"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-semibold mb-2">How to add a player:</h6>
+                        <ul class="small text-muted mb-0">
+                            <li>Enter the player's unique ID from your registration system</li>
+                            <li>Select an available jersey number for the player</li>
+                            <li>Choose the player's primary position on the team</li>
+                            <li>Players will appear in your team manager after being added</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,6 +126,12 @@
 </main>
 
 <footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+</style>
 
 </body>
 </html>

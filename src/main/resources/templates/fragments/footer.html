@@ -1,17 +1,60 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Footer</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
 </head>
 <body>
 <div th:fragment="footer">
-    <footer class="bg-success text-white text-center py-3 mt-auto">
+    <footer class="bg-gradient-primary text-white py-4 mt-auto">
         <div class="container">
-            <small>&copy; SquadMate 2025. All rights reserved.</small>
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                        <div class="bg-white bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px;">
+                            <i class="bi bi-incognito text-white"></i>
+                        </div>
+                        <span class="fw-bold">SquadMate</span>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <small class="opacity-75">
+                        <i class="bi bi-heart-fill text-danger me-1"></i>
+                        Made with love for coaches worldwide
+                    </small>
+                </div>
+            </div>
+            <hr class="my-3 opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <small class="opacity-75">&copy; 2025 SquadMate. All rights reserved.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a href="#" class="text-white text-decoration-none opacity-75">
+                            <i class="bi bi-shield-check"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none opacity-75">
+                            <i class="bi bi-question-circle"></i>
+                        </a>
+                        <a href="#" class="text-white text-decoration-none opacity-75">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 </div>
+
+<style>
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+</style>
+
 </body>
 </html>

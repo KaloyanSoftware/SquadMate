@@ -10,7 +10,7 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
     @Query("""
             SELECT t
             FROM Team t
-            JOIN FETCH t.players
+            LEFT JOIN FETCH t.players
             WHERE t.coach.id = :id
             """)
     Team getTeamWithPlayersByCoachId(Integer id);
