@@ -27,9 +27,18 @@ public class CoachController {
 
     @GetMapping("/teamManager")
     public ModelAndView showTeamManager(@AuthenticationPrincipal final CustomUserDetails customUserDetails) {
+        if(teamService.noCurrentTeam(customUserDetails.getId())){
+            return new ModelAndView("redirect:/coach/createTeam");
+        }else{
         final ModelAndView modelAndView = new ModelAndView("coach/coach-teamManager");
         modelAndView.addObject("team", TeamWithPlayersViewModel.from(teamService.findByCoachId(customUserDetails.getId())));
         return modelAndView;
+       }
+    }
+
+    @GetMapping("/createTeam")
+    public ModelAndView showCreateTeam() {
+        return new ModelAndView("coach/coach-create-team");
     }
 
     @GetMapping("/addPlayer")
@@ -43,5 +52,4 @@ public class CoachController {
 
         return modelAndView;
     }
-
 }

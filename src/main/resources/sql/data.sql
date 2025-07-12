@@ -12,9 +12,21 @@ VALUES (
            '1980-01-01',
            NULL
        );
+--pass: coach2
+       INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
+VALUES (
+           'coach2@squadmate.com',
+           '$2a$12$2I7fvX54yJLOfcbjdf92VOf8L.J3WPDlPK0i4N5oonXivAWlGOJ3q',
+           'Kaloyan ',
+           'Ivanov',
+           '1980-12-02',
+           NULL
+       );
 
 INSERT INTO coach (id, team_id) VALUES (1,1);
 UPDATE team SET coach_id = 1 WHERE id = 1;
+
+INSERT INTO coach (id) VALUES (2);
 
 -- Players (pass: player1–player16)
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES

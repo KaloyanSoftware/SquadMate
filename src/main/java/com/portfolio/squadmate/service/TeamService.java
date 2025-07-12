@@ -21,5 +21,7 @@ public class TeamService {
         return teamRepository.getTeamWithPlayersByCoachId(id);
     }
 
-
+    public boolean noCurrentTeam(final Integer id){
+        return teamRepository.getTeamByCoachId(id) == null;
+ }
 }

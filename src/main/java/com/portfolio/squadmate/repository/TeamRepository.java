@@ -14,4 +14,12 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
             WHERE t.coach.id = :id
             """)
     Team getTeamWithPlayersByCoachId(Integer id);
+
+
+    @Query("""
+            SELECT t
+            FROM Team t
+            WHERE t.coach.id = :id
+            """)
+    Team getTeamByCoachId(Integer id);
 }

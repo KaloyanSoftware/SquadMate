@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Team | SquadMate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<nav th:replace="~{fragments/coach-navbar::navigation}"></nav>
+
+<main class="container d-flex justify-content-center align-items-center flex-grow-1 py-5">
+    <div class="bg-white p-5 rounded-4 shadow w-100" style="max-width: 600px;">
+        
+        <!-- Header Section -->
+        <div class="text-center mb-4">
+            <div class="mb-3">
+                <i class="bi bi-trophy-fill text-success" style="font-size: 3rem;"></i>
+            </div>
+            <h2 class="text-success fw-bold mb-2">Create Your Team</h2>
+            <p class="text-muted mb-0">Set up your team and start building your squad</p>
+        </div>
+
+        <!-- Form -->
+        <form th:action="@{/coach/createTeam}" method="post">
+            
+            <!-- Team Name -->
+            <div class="mb-4">
+                <label for="teamName" class="form-label fw-semibold">
+                    <i class="bi bi-shield-check me-2 text-success"></i>Team Name
+                </label>
+                <input type="text" 
+                       class="form-control form-control-lg" 
+                       id="teamName" 
+                       name="teamName" 
+                       placeholder="Enter your team name"
+                       required>
+                <div class="form-text">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Choose a memorable name that represents your team
+                </div>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="d-grid gap-3 mt-5">
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="bi bi-check-circle me-2"></i>Create Team
+                </button>
+                <a href="/coach/home" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Home
+                </a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+</body>
+</html>
