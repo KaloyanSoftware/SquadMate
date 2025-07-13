@@ -24,10 +24,10 @@
                     <h3 class="mb-0 fw-bold">Join SquadMate</h3>
                     <p class="mb-0 opacity-75">Create your account and start managing your team</p>
                 </div>
-                
+
                 <div class="card-body p-4 p-md-5">
-                    <form th:action="@{/register}" method="post" class="needs-validation" novalidate>
-                        
+                    <form th:object="${newUserViewModel}" method="post" >
+
                         <!-- Email Field -->
                         <div class="mb-4">
                             <label for="email" class="form-label fw-semibold">
@@ -37,16 +37,15 @@
                                 <span class="input-group-text bg-light border-end-0">
                                     <i class="bi bi-envelope text-muted"></i>
                                 </span>
-                                <input type="email" 
-                                       class="form-control border-start-0 ps-0" 
-                                       id="email" 
-                                       name="email" 
+                                <input type="email"
+                                       name="email"
+                                       id="email"
+                                       class="form-control border-start-0 ps-0"
+                                       th:field="*{email}"
                                        placeholder="Enter your email"
                                        required>
                             </div>
-                            <div class="invalid-feedback">
-                                Please enter a valid email address.
-                            </div>
+                            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         </div>
 
                         <!-- Password Field -->
@@ -58,25 +57,21 @@
                                 <span class="input-group-text bg-light border-end-0">
                                     <i class="bi bi-lock text-muted"></i>
                                 </span>
-                                <input type="password" 
-                                       class="form-control border-start-0 ps-0" 
-                                       id="password" 
-                                       name="password" 
+                                <input type="password"
+                                       name="password"
+                                       id="password"
+                                       class="form-control border-start-0 ps-0"
+                                       th:field="*{password}"
                                        placeholder="Create a strong password"
                                        required>
-                                <button class="btn btn-outline-secondary border-start-0" 
-                                        type="button" 
+                                <button class="btn btn-outline-secondary border-start-0"
+                                        type="button"
                                         id="togglePassword">
                                     <i class="bi bi-eye"></i>
                                 </button>
                             </div>
-                            <div class="form-text">
-                                <i class="bi bi-info-circle me-1"></i>
-                                Use at least 8 characters with letters, numbers, and symbols
-                            </div>
-                            <div class="invalid-feedback">
-                                Please enter a password.
-                            </div>
+
+                            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         </div>
 
                         <!-- Name Fields -->
@@ -85,29 +80,27 @@
                                 <label for="firstName" class="form-label fw-semibold">
                                     <i class="bi bi-person me-2 text-success"></i>First Name
                                 </label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="firstName" 
-                                       name="firstName" 
+                                <input type="text"
+                                       name="firstName"
+                                       id="firstName"
+                                       class="form-control"
+                                       th:field="*{firstName}"
                                        placeholder="Enter first name"
                                        required>
-                                <div class="invalid-feedback">
-                                    Please enter your first name.
-                                </div>
+                                <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                             </div>
                             <div class="col-md-6">
                                 <label for="lastName" class="form-label fw-semibold">
                                     <i class="bi bi-person me-2 text-success"></i>Last Name
                                 </label>
-                                <input type="text" 
-                                       class="form-control" 
-                                       id="lastName" 
-                                       name="lastName" 
+                                <input type="text"
+                                       class="form-control"
+                                       name="lastName"
+                                       id="lastName"
+                                       th:field="*{lastName}"
                                        placeholder="Enter last name"
                                        required>
-                                <div class="invalid-feedback">
-                                    Please enter your last name.
-                                </div>
+                                <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                             </div>
                         </div>
 
@@ -116,14 +109,13 @@
                             <label for="birthDate" class="form-label fw-semibold">
                                 <i class="bi bi-calendar me-2 text-success"></i>Birth Date
                             </label>
-                            <input type="date" 
-                                   class="form-control" 
-                                   id="birthDate" 
-                                   name="birthDate" 
+                            <input type="date"
+                                   name="birthDate"
+                                   id="birthDate"
+                                   class="form-control"
+                                   th:field="*{birthDate}"
                                    required>
-                            <div class="invalid-feedback">
-                                Please enter your birth date.
-                            </div>
+                            <div class="text-danger" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></div>
                         </div>
 
                         <!-- Account Type -->
@@ -131,30 +123,15 @@
                             <label for="role" class="form-label fw-semibold">
                                 <i class="bi bi-person-badge me-2 text-success"></i>Account Type
                             </label>
-                            <select class="form-select" id="role" name="role" required>
+                            <select class="form-select" name="role"
+                                    id="role" th:field="*{role}" required>
                                 <option value="" disabled selected>Select your role</option>
                                 <option th:each="role : ${roles}"
                                         th:value="${role}"
                                         th:text="${role}">
                                 </option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please select your account type.
-                            </div>
-                        </div>
-
-                        <!-- Terms and Conditions -->
-                        <div class="mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="terms" required>
-                                <label class="form-check-label" for="terms">
-                                    I agree to the <a href="#" class="text-decoration-none text-success">Terms of Service</a> 
-                                    and <a href="#" class="text-decoration-none text-success">Privacy Policy</a>
-                                </label>
-                                <div class="invalid-feedback">
-                                    You must agree before submitting.
-                                </div>
-                            </div>
+                            <div class="text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
                         </div>
 
                         <!-- Submit Button -->
@@ -172,7 +149,7 @@
                         <!-- Login Link -->
                         <div class="text-center">
                             <p class="mb-0 text-muted">
-                                Already have an account? 
+                                Already have an account?
                                 <a th:href="@{/login}" class="text-decoration-none fw-semibold text-success">
                                     Sign in here
                                 </a>
@@ -196,44 +173,28 @@
 <footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
 
 <script>
-// Password toggle functionality
-document.getElementById('togglePassword').addEventListener('click', function() {
-    const password = document.getElementById('password');
-    const icon = this.querySelector('i');
-    
-    if (password.type === 'password') {
-        password.type = 'text';
-        icon.classList.remove('bi-eye');
-        icon.classList.add('bi-eye-slash');
-    } else {
-        password.type = 'password';
-        icon.classList.remove('bi-eye-slash');
-        icon.classList.add('bi-eye');
-    }
-});
+    // Password toggle functionality
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const password = document.getElementById('password');
+        const icon = this.querySelector('i');
 
-// Form validation
-(function() {
-    'use strict';
-    window.addEventListener('load', function() {
-        var forms = document.getElementsByClassName('needs-validation');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
+        if (password.type === 'password') {
+            password.type = 'text';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        } else {
+            password.type = 'password';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        }
+    });
+
 </script>
 
 <style>
-.bg-gradient-primary {
-    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
-}
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+    }
 </style>
 
 </body>
