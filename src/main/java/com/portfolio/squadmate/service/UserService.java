@@ -1,5 +1,6 @@
 package com.portfolio.squadmate.service;
 
+import com.portfolio.squadmate.domain.Coach;
 import com.portfolio.squadmate.domain.User;
 import com.portfolio.squadmate.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -12,7 +13,8 @@ import java.time.LocalDate;
 public class UserService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;

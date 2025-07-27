@@ -19,6 +19,7 @@ public class ApiPlayerController {
         this.playerService = playerService;
     }
 
+
     @PatchMapping("/{id}")
     public ResponseEntity<PlayerDTO> patch(@PathVariable final String id,
                                            @AuthenticationPrincipal final CustomUserDetails customUserDetails,

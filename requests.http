@@ -3,7 +3,7 @@
 POST http://localhost:8080/api/team
 Content-Type: application/json
 Accept: application/json
-Cookie: JSESSIONID=
+Cookie: JSESSIONID=07CE1BBA066FFEE96601E1E4140D99E8
 
 {
   "teamName": "Levski FC"

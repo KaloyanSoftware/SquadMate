@@ -3,6 +3,7 @@ package com.portfolio.squadmate.presentation.webControllers.coach;
 import com.portfolio.squadmate.domain.Position;
 import com.portfolio.squadmate.presentation.webControllers.viewModels.TeamWithPlayersViewModel;
 import com.portfolio.squadmate.security.CustomUserDetails;
+import com.portfolio.squadmate.service.AuthorizationService;
 import com.portfolio.squadmate.service.TeamService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,11 @@ public class CoachController {
 
     private final TeamService teamService;
 
-    public CoachController(final TeamService teamService) {
+    private final AuthorizationService authorizationService;
+
+    public CoachController(final TeamService teamService, final AuthorizationService authorizationService) {
         this.teamService = teamService;
+        this.authorizationService = authorizationService;
     }
 
     @GetMapping("/home")
@@ -43,13 +47,18 @@ public class CoachController {
 
     @GetMapping("/addPlayer")
     public ModelAndView showAddPlayer(@AuthenticationPrincipal final CustomUserDetails customUserDetails) {
-        final ModelAndView modelAndView = new ModelAndView("coach/coach-add-player");
 
-        modelAndView.addObject("availableJerseyNumbers",teamService
-                .findByCoachId(customUserDetails.getId()).getAvailableJerseyNumbers());
+        if(authorizationService.isCoachWithNoTeam(customUserDetails)){
+            return new ModelAndView("redirect:/coach/createTeam");
+        }else{
+            final ModelAndView modelAndView = new ModelAndView("coach/coach-add-player");
 
-        modelAndView.addObject("positions", Position.values());
+            modelAndView.addObject("availableJerseyNumbers",teamService
+                    .findByCoachId(customUserDetails.getId()).getAvailableJerseyNumbers());
 
-        return modelAndView;
+            modelAndView.addObject("positions", Position.values());
+
+            return modelAndView;
+        }
     }
 }

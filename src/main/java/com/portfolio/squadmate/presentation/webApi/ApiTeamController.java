@@ -2,6 +2,7 @@ package com.portfolio.squadmate.presentation.webApi;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ public class ApiTeamController {
         this.teamService = teamService;
     }
 
+    @PreAuthorize("@authorizationService.isCoachWithNoTeam(principal)")
     @PostMapping
     public ResponseEntity<TeamDTO> createTeam(@RequestBody final AddTeamDTO addTeamDTO,
     @AuthenticationPrincipal final CustomUserDetails customUserDetails) {
