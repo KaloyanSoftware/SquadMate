@@ -48,4 +48,9 @@ public class Team {
         this.coach = coach;
         coach.setTeam(this);
     }
+
+    public void removePlayer(final Player player){
+        this.players.remove(player);
+        player.setTeam(null);
+    }
 }

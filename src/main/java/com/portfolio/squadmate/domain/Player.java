@@ -30,7 +30,12 @@ public class Player extends User{
     private boolean isStarter;
 
     public void setTeam(final Team team){
+        if (this.team != null) {
+            this.team.getPlayers().remove(this);
+        }
         this.team = team;
-        team.getPlayers().add(this);
+        if (team != null) {
+            team.getPlayers().add(this);
+        }
     }
 }

@@ -31,6 +31,14 @@ public class AuthorizationService {
         return coach.getTeam() == null;
     }
 
+    public boolean isCoach(final CustomUserDetails customUserDetails){
+        if(customUserDetails != null){
+            final User user = userRepository.findById(customUserDetails.getId()).orElseThrow();
+            return user instanceof Coach;
+        }
+        return false;
+    }
+
 
 
 }
