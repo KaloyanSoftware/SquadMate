@@ -5,9 +5,8 @@
     <title>Team Manager</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
-    <link rel="stylesheet" th:href="@{/css/team-manager.css}">
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <script defer th:src="@{/js/team-manager.js}"></script>
+    <script defer th:src="@{/images/js/remove-player-from-team.js}"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -56,10 +55,11 @@
                                 <strong>#</strong> <span th:text="${player.jerseyNumber()}"></span><br>
                                 <strong>Pos:</strong> <span th:text="${player.position()}"></span>
                             </p>
-                            <!-- REMOVE button -->
-                            <button class="btn btn-danger btn-sm mt-auto remove-btn">
-                                <span>REMOVE</span>
-                            </button>
+                            <form class="removeForm mt-auto">
+                                <button th:attr="data-player-id=${player.id()}" type="submit" class="btn btn-danger btn-sm mt-auto remove-btn">
+                                    REMOVE
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,11 @@
                             <strong>Pos:</strong> <span th:text="${player.position()}"></span>
                         </p>
 
-                        <!-- REMOVE button -->
-                        <button class="btn btn-danger btn-sm mt-auto remove-btn">
-                            <span>REMOVE</span>
-                        </button>
+                        <form class="removeForm mt-auto">
+                            <button th:attr="data-player-id=${player.id()}" type="submit" class="btn btn-danger btn-sm mt-auto remove-btn">
+                                REMOVE
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

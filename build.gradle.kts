@@ -33,7 +33,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
+    implementation("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
     implementation("org.webjars:bootstrap:5.3.3")
     implementation("org.webjars:webjars-locator-core:0.48")
