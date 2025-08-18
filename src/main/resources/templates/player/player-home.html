@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Dashboard | SquadMate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav th:replace="~{fragments/player-navbar::navigation}"></nav>
+
+<main class="container flex-grow-1 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Welcome Section -->
+            <div class="text-center mb-5">
+                <div class="bg-success bg-gradient text-white rounded-4 p-5 mb-4 shadow">
+                    <div class="mb-3">
+                        <i class="bi bi-person-circle display-1"></i>
+                    </div>
+                    <h1 class="display-6 fw-bold mb-3">Welcome back, <span sec:authentication="name"></span>!</h1>
+                    <p class="lead mb-0 opacity-75">Ready to check your squad and matches?</p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-people-fill text-success fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Team</h5>
+                            <p class="card-text text-muted mb-4">View your current team and teammates.</p>
+                            <a class="btn btn-success btn-lg px-4" th:href="@{/player/team}">
+                                <i class="bi bi-arrow-right me-2"></i>View Team
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-calendar-event text-primary fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Matches</h5>
+                            <p class="card-text text-muted mb-4">See upcoming fixtures and past results.</p>
+                            <a class="btn btn-primary btn-lg px-4" th:href="@{/player/matches}">
+                                <i class="bi bi-arrow-right me-2"></i>View Matches
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="rounded-circle bg-info bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-person-badge-fill text-info fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3">Profile</h5>
+                            <p class="card-text text-muted mb-4">Edit your player account details.</p>
+                            <a class="btn btn-info btn-lg px-4" th:href="@{/player/profile}">
+                                <i class="bi bi-arrow-right me-2"></i>View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</main>
+
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+</body>
+</html>

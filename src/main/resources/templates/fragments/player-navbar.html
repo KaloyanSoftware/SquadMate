@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Navbar</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-success shadow px-4">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" th:href="@{/player/home}">
+            <i class="bi bi-incognito"></i>
+            <span class="fs-4 fw-semibold ms-2">SquadMate</span>
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#playerNavbarNav" aria-controls="playerNavbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="playerNavbarNav">
+            <ul class="navbar-nav me-auto ms-3">
+                <li class="nav-item">
+                    <a class="btn btn-outline-light fw-semibold" href="/player/team">Team</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="btn btn-outline-light fw-semibold" href="/player/matches">Matches</a>
+                </li>
+                <li class="nav-item ms-2">
+                    <a class="btn btn-outline-light fw-semibold" href="/player/profile">Profile</a>
+                </li>
+            </ul>
+
+            <!-- User Dropdown -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle text-white fw-semibold"
+                       href="#"
+                       id="playerUserDropdown"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Hi, <span sec:authentication="name"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="playerUserDropdown">
+                        <li>
+                            <form th:action="@{/logout}" method="post" class="dropdown-item p-0">
+                                <button type="submit" class="btn btn-link dropdown-item text-danger px-3 py-2">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
