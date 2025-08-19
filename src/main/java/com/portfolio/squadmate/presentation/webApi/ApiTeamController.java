@@ -1,5 +1,8 @@
 package com.portfolio.squadmate.presentation.webApi;
 
+import com.portfolio.squadmate.presentation.webApi.dto.PatchPlayerDTO;
+import com.portfolio.squadmate.presentation.webApi.dto.PlayerDTO;
+import com.portfolio.squadmate.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,8 +21,11 @@ public class ApiTeamController {
 
     private final TeamService teamService;
 
-    public ApiTeamController(final TeamService teamService) {
+    private final PlayerService playerService;
+
+    public ApiTeamController(final TeamService teamService, final PlayerService playerService) {
         this.teamService = teamService;
+        this.playerService = playerService;
     }
 
     @PreAuthorize("@authorizationService.isCoachWithNoTeam(principal)")
@@ -28,6 +34,18 @@ public class ApiTeamController {
     @AuthenticationPrincipal final CustomUserDetails customUserDetails) {
         final Team team = teamService.createTeam(addTeamDTO.teamName(), customUserDetails.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(TeamDTO.from(team));
+    }
+
+    @PreAuthorize("@authorizationService.isCoach(principal)")
+    @PatchMapping("players/{id}")
+    public ResponseEntity<PlayerDTO> addPlayerToTeam(@PathVariable final String id,
+                                                       @AuthenticationPrincipal final CustomUserDetails customUserDetails,
+                                                       @RequestBody final PatchPlayerDTO patchPlayerDTO) {
+
+        final PlayerDTO playerDTO = PlayerDTO.from(playerService.addPlayerToTeam(Integer.parseInt(id),
+                patchPlayerDTO.jerseyNumber(), patchPlayerDTO.position(),
+                customUserDetails.getId()));
+        return ResponseEntity.status(HttpStatus.OK).body(playerDTO);
     }
 
     //still having doubts which controller should handle this endpoint

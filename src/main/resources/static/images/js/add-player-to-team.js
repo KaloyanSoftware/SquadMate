@@ -13,7 +13,7 @@ form.addEventListener("submit",async event =>{
     })
 
     try{
-        const response = await fetch(`/api/player/${playerId}`,{
+        const response = await fetch(`/api/team/players/${playerId}`,{
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",

@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Matches | SquadMate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav th:replace="~{fragments/player-navbar::navigation}"></nav>
+
+<main class="container flex-grow-1 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <!-- Page Heading -->
+            <div class="text-center mb-5">
+                <h1 class="fw-bold">Upcoming Matches</h1>
+                <p class="text-muted">Here are your team’s scheduled future matches.</p>
+            </div>
+
+            <!-- Matches List -->
+            <div th:if="${#lists.isEmpty(matches.matchViewModels)}" class="alert alert-info text-center">
+                <i class="bi bi-info-circle me-2"></i>No upcoming matches scheduled yet.
+            </div>
+
+            <div th:each="match : ${matches.matchViewModels}" class="card mb-4 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="row align-items-center">
+
+                        <!-- Match Date -->
+                        <div class="col-md-3 text-center mb-3 mb-md-0">
+                            <i class="bi bi-calendar-event fs-2 text-success"></i>
+                            <p class="fw-semibold mb-1"
+                               th:text="${#temporals.format(match.matchDate, 'dd MMM yyyy')}"></p>
+                            <small class="text-muted"
+                                   th:text="${#temporals.format(match.matchDate, 'HH:mm')}"></small>
+                        </div>
+
+                        <!-- Teams -->
+                        <div class="col-md-6 text-center">
+                            <div class="d-flex justify-content-center align-items-center gap-3">
+                                <div>
+                                    <h5 class="fw-bold mb-1" th:text="${match.firstTeam.name}"></h5>
+                                    <small class="text-muted"
+                                           th:text="'Coach: ' + ${match.firstTeam.coach.firstName} + ' ' + ${match.firstTeam.coach.lastName}"></small>
+                                </div>
+                                <span class="fw-bold fs-5">vs</span>
+                                <div>
+                                    <h5 class="fw-bold mb-1" th:text="${match.secondTeam.name}"></h5>
+                                    <small class="text-muted"
+                                           th:text="'Coach: ' + ${match.secondTeam.coach.firstName} + ' ' + ${match.secondTeam.coach.lastName}"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="col-md-3 text-center mt-3 mt-md-0">
+                            <i class="bi bi-geo-alt-fill fs-4 text-danger"></i>
+                            <p class="mb-0 fw-semibold" th:text="${match.location}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer th:replace="~{fragments/footer::footer}" class="mt-auto"></footer>
 
 </body>
 </html>

@@ -12,24 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/player")
-public class ApiPlayerController {
+public class ApiPlayerController{
 
     private final PlayerService playerService;
 
     public ApiPlayerController(PlayerService playerService) {
         this.playerService = playerService;
-    }
-
-    @PreAuthorize("@authorizationService.isCoach(principal)")
-    @PatchMapping("/{id}")
-    public ResponseEntity<PlayerDTO> patch(@PathVariable final String id,
-                                           @AuthenticationPrincipal final CustomUserDetails customUserDetails,
-                                           @RequestBody final PatchPlayerDTO patchPlayerDTO) {
-
-        final PlayerDTO playerDTO = PlayerDTO.from(playerService.addPlayerToTeam(Integer.parseInt(id),
-                patchPlayerDTO.jerseyNumber(), patchPlayerDTO.position(),
-                customUserDetails.getId()));
-        return ResponseEntity.status(HttpStatus.OK).body(playerDTO);
     }
 
 
