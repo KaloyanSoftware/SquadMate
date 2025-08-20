@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.portfolio.squadmate.domain.Coach;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface CoachRepository extends JpaRepository<Coach, Integer> {
 
     @Query("""
@@ -12,5 +14,5 @@ public interface CoachRepository extends JpaRepository<Coach, Integer> {
             LEFT JOIN FETCH c.team
             WHERE c.id = :id
             """)
-    Coach getCoachWithTeam(Integer id);
+    Optional<Coach> getCoachWithTeam(Integer id);
 }

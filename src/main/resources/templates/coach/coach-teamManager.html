@@ -152,16 +152,29 @@
             <div class="modal-body">
                 <input type="hidden" id="editPlayerId" name="id">
 
+                <!-- Jersey Number Dropdown -->
                 <div class="mb-3">
                     <label for="jerseyNumber" class="form-label">Jersey Number</label>
-                    <input type="number" class="form-control" id="jerseyNumber" name="jerseyNumber" required>
+                    <select id="jerseyNumber" name="jerseyNumber" class="form-select" required>
+                        <option th:each="num : ${availableJerseyNumbers}"
+                                th:value="${num}"
+                                th:text="${num}">
+                        </option>
+                    </select>
                 </div>
 
+                <!-- Position Dropdown -->
                 <div class="mb-3">
                     <label for="position" class="form-label">Position</label>
-                    <input type="text" class="form-control" id="position" name="position" required>
+                    <select id="position" name="position" class="form-select" required>
+                        <option th:each="pos : ${positions}"
+                                th:value="${pos}"
+                                th:text="${pos}">
+                        </option>
+                    </select>
                 </div>
 
+                <!-- Role Dropdown -->
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
                     <select id="role" name="status" class="form-select">
@@ -177,6 +190,7 @@
         </form>
     </div>
 </div>
+
 
 <!-- Footer -->
 <footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>

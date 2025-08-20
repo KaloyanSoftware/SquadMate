@@ -28,7 +28,7 @@ public class PlayerService{
 
     public Player addPlayerToTeam(final Integer id, final int jerseyNumber, final Position position, final Integer coachId){
         final Player player = playerRepository.findById(id).orElseThrow();
-        final Team team = teamRepository.getTeamWithPlayersByCoachId(coachId);
+        final Team team = teamRepository.getTeamWithPlayersByCoachId(coachId).orElseThrow();
 
         if(jerseyNumber != 0){
             player.setJerseyNumber(jerseyNumber);
@@ -38,7 +38,7 @@ public class PlayerService{
             player.setPosition(position);
         }
 
-        if(coachId != null &&  team != null){
+        if(coachId != null){
             player.setTeam(team);
         }
 
@@ -47,9 +47,25 @@ public class PlayerService{
     }
 
     public List<Match> findUpcomingMatches(final Integer playerId){
-        Player player = playerRepository.getPlayerByIdWithTeam(playerId);
+        Player player = playerRepository.getPlayerByIdWithTeam(playerId).orElseThrow();
         Team team = player.getTeam();
 
         return matchRepository.getUpcomingMatchesByTeamId(team.getId());
+    }
+
+    public Player patchPlayer(final Integer id, final int jerseyNumber, final Position position, final boolean isStarter){
+        final Player player = playerRepository.getPlayerByIdWithTeam(id).orElseThrow();
+
+        if(jerseyNumber != 0){
+            player.setJerseyNumber(jerseyNumber);
+        }
+
+        if(position != null){
+            player.setPosition(position);
+        }
+
+        player.setStarter(isStarter);
+
+        return playerRepository.save(player);
     }
 }

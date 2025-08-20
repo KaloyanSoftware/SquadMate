@@ -28,11 +28,12 @@ public class TeamService {
     }
 
     public Team findByCoachId(final Integer id){
-        return teamRepository.getTeamWithPlayersByCoachId(id);
+        return teamRepository.getTeamWithPlayersByCoachId(id).orElseThrow();
     }
 
     public boolean noCurrentTeam(final Integer id){
-        return teamRepository.getTeamByCoachId(id) == null;
+
+        return teamRepository.getTeamByCoachId(id).isEmpty();
     }
 
     public Team createTeam(final String teamName, final Integer coachId) {

@@ -10,11 +10,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByEmail(String email);
 
-
-    /*@Query("""
-        FROM User u
-        LEFT JOIN FETCH u.t
-        WHERE u.id = :id
-        """)
-    Optional<User> findByIdWithTeam(Integer id);*/
 }

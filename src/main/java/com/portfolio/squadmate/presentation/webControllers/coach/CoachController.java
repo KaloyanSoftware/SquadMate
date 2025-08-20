@@ -36,6 +36,11 @@ public class CoachController {
         }else{
         final ModelAndView modelAndView = new ModelAndView("coach/coach-teamManager");
         modelAndView.addObject("team", TeamWithPlayersViewModel.from(teamService.findByCoachId(customUserDetails.getId())));
+
+        modelAndView.addObject("positions", Position.values());
+
+        modelAndView.addObject("availableJerseyNumbers", teamService
+                .findByCoachId(customUserDetails.getId()).getAvailableJerseyNumbers());
         return modelAndView;
        }
     }

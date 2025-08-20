@@ -38,7 +38,7 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Team</h5>
                             <p class="card-text text-muted mb-4">View your current team and teammates.</p>
-                            <a class="btn btn-success btn-lg px-4" th:href="@{/player/team}">
+                            <a class="btn btn-success btn-lg px-4">
                                 <i class="bi bi-arrow-right me-2"></i>View Team
                             </a>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Matches</h5>
                             <p class="card-text text-muted mb-4">See upcoming fixtures and past results.</p>
-                            <a class="btn btn-primary btn-lg px-4" th:href="@{/player/matches}">
+                            <a class="btn btn-primary btn-lg px-4">
                                 <i class="bi bi-arrow-right me-2"></i>View Matches
                             </a>
                         </div>
@@ -68,13 +68,15 @@
                             </div>
                             <h5 class="card-title fw-bold mb-3">Profile</h5>
                             <p class="card-text text-muted mb-4">Edit your player account details.</p>
-                            <a class="btn btn-info btn-lg px-4" th:href="@{/player/profile}">
+                            <a class="btn btn-info btn-lg px-4">
                                 <i class="bi bi-arrow-right me-2"></i>View Profile
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </main>
 
 <footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>

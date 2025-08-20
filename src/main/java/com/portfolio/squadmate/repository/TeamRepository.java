@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Integer> {
     @Query("""
@@ -13,7 +15,7 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
             LEFT JOIN FETCH t.players
             WHERE t.coach.id = :id
             """)
-    Team getTeamWithPlayersByCoachId(Integer id);
+    Optional<Team> getTeamWithPlayersByCoachId(Integer id);
 
 
     @Query("""
@@ -21,5 +23,5 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
             FROM Team t
             WHERE t.coach.id = :id
             """)
-    Team getTeamByCoachId(Integer id);
+    Optional<Team> getTeamByCoachId(Integer id);
 }
