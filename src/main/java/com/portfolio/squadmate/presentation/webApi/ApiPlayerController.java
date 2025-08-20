@@ -6,6 +6,7 @@ import com.portfolio.squadmate.presentation.webApi.dto.PlayerDTO;
 import com.portfolio.squadmate.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,7 @@ public class ApiPlayerController{
         this.playerService = playerService;
     }
 
+    @PreAuthorize("@authorizationService.canModifyPlayer(principal, #playerId)")
     @PatchMapping("/{id}")
     public ResponseEntity<PlayerDTO> patch(@PathVariable final String id,
                                            @RequestBody final PatchPlayerDTO patchPlayerDTO) {

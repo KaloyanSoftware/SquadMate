@@ -1,5 +1,5 @@
 #@no-cookie-jar
 #@no-redirect
-DELETE http://localhost:8080/api/team/players/3
-Cookie: JSESSIONID=12715FE67A021543315A2B0579ED82EC
+DELETE http://localhost:8080/api/team/players/17
+Cookie: JSESSIONID=E4340154447A8DC705ED0F0974066F2D
 

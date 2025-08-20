@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
 import com.portfolio.squadmate.domain.Team;
 import com.portfolio.squadmate.presentation.webApi.dto.AddTeamDTO;
 import com.portfolio.squadmate.presentation.webApi.dto.TeamDTO;
@@ -48,8 +47,7 @@ public class ApiTeamController {
         return ResponseEntity.status(HttpStatus.OK).body(playerDTO);
     }
 
-    //still having doubts which controller should handle this endpoint
-    //what I want to achieve here is to remove a player from a team
+    @PreAuthorize("@authorizationService.canModifyPlayer(principal, #playerId)")
     @DeleteMapping("/players/{playerId}")
     public ResponseEntity<Void> removePlayer(@PathVariable final Integer playerId) {
 
