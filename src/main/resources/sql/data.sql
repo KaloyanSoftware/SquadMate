@@ -1,3 +1,6 @@
+----------------------------------
+-- TEAM 1: Greenfield United
+----------------------------------
 -- Insert the team
 INSERT INTO team (name) VALUES ('Greenfield United');
 
@@ -13,11 +16,11 @@ VALUES (
            NULL
        );
 --pass: coach2
-       INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
 VALUES (
            'coach2@squadmate.com',
            '$2a$12$2I7fvX54yJLOfcbjdf92VOf8L.J3WPDlPK0i4N5oonXivAWlGOJ3q',
-           'Kaloyan ',
+           'Kaloyan',
            'Ivanov',
            '1980-12-02',
            NULL
@@ -72,4 +75,89 @@ INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
 (16, 15, 'LEFT_WINGER', FALSE, 1);
 
 INSERT INTO player (id, is_starter, jersey_number, position) VALUES
-                            (17, FALSE, 1,'GOALKEEPER');
+    (17, FALSE, 1,'GOALKEEPER');
+
+----------------------------------
+-- ADDITIONAL TEAMS + COACHES
+----------------------------------
+
+-- Insert new teams
+INSERT INTO team (name) VALUES ('Bluefield Rovers'); -- id=2
+INSERT INTO team (name) VALUES ('Redstone FC');      -- id=3
+INSERT INTO team (name) VALUES ('Silverlake City');  -- id=4
+
+-- Coaches base user info
+-- pass: coach3
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
+VALUES ('coach3@squadmate.com',
+        '$2a$12$zSlYQJzE2U2JmGqM0XzTk.UMdzwZAb7hX8t6H.9ZFlCGC5wM6vGiC',
+        'Michael', 'Johnson', '1975-06-15', NULL);
+
+-- pass: coach4
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
+VALUES ('coach4@squadmate.com',
+        '$2a$12$0auZCNGydHz5ylgGVn0D6eH1hSw/HO9xrhgMZwhOP8QoT38yIbg92',
+        'David', 'Peterson', '1982-09-30', NULL);
+
+-- pass: coach5
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
+VALUES ('coach5@squadmate.com',
+        '$2a$12$QIR9F8VXZ0TnDh0Uip80Q.GBzBcxONblhQYhuMn4N0qCZZkJH7Sbm',
+        'Stefan', 'Mihaylov', '1988-04-12', NULL);
+
+-- Link coaches to teams
+INSERT INTO coach (id, team_id) VALUES (18, 2);
+UPDATE team SET coach_id = 18 WHERE id = 2;
+
+INSERT INTO coach (id, team_id) VALUES (19, 3);
+UPDATE team SET coach_id = 19 WHERE id = 3;
+
+INSERT INTO coach (id, team_id) VALUES (20, 4);
+UPDATE team SET coach_id = 20 WHERE id = 4;
+
+----------------------------------
+-- PLAYERS FOR NEW TEAMS
+----------------------------------
+
+-- Bluefield Rovers players (team 2)
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
+                                                                                                          ('blue1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Liam', 'Walker', '2000-03-10', NULL),
+                                                                                                          ('blue2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Noah', 'Harris', '1999-07-22', NULL);
+
+INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
+                                                                          (21, 1, 'GOALKEEPER', TRUE, 2),
+                                                                          (22, 9, 'STRIKER', TRUE, 2);
+
+-- Redstone FC players (team 3)
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
+                                                                                                          ('red1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Oliver', 'Baker', '1998-05-14', NULL),
+                                                                                                          ('red2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'James', 'Young', '2001-12-01', NULL);
+
+INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
+                                                                          (23, 1, 'GOALKEEPER', TRUE, 3),
+                                                                          (24, 10, 'STRIKER', TRUE, 3);
+
+-- Silverlake City players (team 4)
+INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
+                                                                                                          ('silver1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'William', 'Adams', '1997-11-23', NULL),
+                                                                                                          ('silver2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Benjamin', 'Turner', '1999-06-05', NULL);
+
+INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
+                                                                          (25, 1, 'GOALKEEPER', TRUE, 4),
+                                                                          (26, 11, 'STRIKER', TRUE, 4);
+
+-- Matches
+INSERT INTO match (id, match_date, location) VALUES
+                                                 (1, '2025-09-20 15:00:00', 'Stadium A'),
+                                                 (2, '2024-09-05 18:00:00', 'Stadium B'),
+                                                 (3, '2024-09-15 20:00:00', 'Stadium C');
+
+-- Team_Match (with 0 defaults for all stats)
+INSERT INTO team_match (team_id, match_id, goals, red_cards, yellow_cards, corners, ball_possession, total_shots, shots_on_target, fouls, line_up_notes, total_passes)
+VALUES
+    (1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

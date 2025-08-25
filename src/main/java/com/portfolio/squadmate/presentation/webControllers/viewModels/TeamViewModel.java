@@ -1,10 +1,10 @@
 package com.portfolio.squadmate.presentation.webControllers.viewModels;
 
-import com.portfolio.squadmate.domain.Team;
+import com.portfolio.squadmate.domain.TeamMatch;
 
-public record TeamViewModel(String name, CoachViewModel coach) {
+public record TeamViewModel(String name, int goals, CoachViewModel coach) {
 
-    public static TeamViewModel from (final Team team){
-        return new TeamViewModel(team.getName(), CoachViewModel.from(team.getCoach()));
+    public static TeamViewModel from (final TeamMatch teamMatch){
+        return new TeamViewModel(teamMatch.getTeam().getName(), teamMatch.getGoals(), CoachViewModel.from(teamMatch.getTeam().getCoach()));
     }
 }

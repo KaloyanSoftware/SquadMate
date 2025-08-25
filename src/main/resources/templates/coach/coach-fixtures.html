@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coach Fixtures | SquadMate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Coach Navbar -->
+<nav th:replace="~{fragments/coach-navbar::navigation}"></nav>
+
+<main class="container py-5 flex-grow-1">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="text-center mb-4">
+                <h1 class="h3 fw-bold">Fixtures</h1>
+                <p class="text-muted mb-0">View all past and upcoming matches for your team.</p>
+            </div>
+
+            <!-- Filters (currently commented out) -->
+            <!--<div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="opponentFilter" class="form-label">Opponent</label>
+                            <input id="opponentFilter" type="text" class="form-control" placeholder="Type opponent name">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="dateFilter" class="form-label">Match Date</label>
+                            <input id="dateFilter" type="date" class="form-control">
+                        </div>
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button type="reset" class="btn btn-outline-secondary w-100">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>-->
+
+            <!-- Empty state -->
+            <div th:if="${#lists.isEmpty(matches.matchViewModels())}" class="alert alert-info text-center">
+                <i class="bi bi-info-circle me-2"></i>No matches found.
+            </div>
+
+            <!-- Matches list -->
+            <div class="vstack gap-3" th:if="${!#lists.isEmpty(matches.matchViewModels())}">
+                <div class="card border-0 shadow-sm"
+                     th:each="m : ${matches.matchViewModels()}"
+                     th:attr="data-opponents=${m.firstTeam().name()} + ' ' + ${m.secondTeam().name()},
+                              data-date=${#temporals.format(m.matchDate(), 'yyyy-MM-dd')}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start flex-wrap">
+                            <div class="me-3">
+                                <div class="h5 mb-1" th:text="${m.firstTeam().name()} + ' vs ' + ${m.secondTeam().name()}"></div>
+                                <div class="text-muted small">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    <span th:text="${m.location()}"></span>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <div class="small text-muted">
+                                    <i class="bi bi-calendar-event me-1"></i>
+                                    <span th:text="${#temporals.format(m.matchDate(), 'dd MMM yyyy, HH:mm')}"></span>
+                                </div>
+
+                                <!-- Score display -->
+                                <div class="mt-2">
+                                    <!-- Upcoming match -->
+                                    <span th:if="${m.matchDate().isAfter(#temporals.createNow())}"
+                                          class="badge bg-secondary">
+                                        Score TBD
+                                    </span>
+
+                                    <!-- Past match -->
+                                    <span th:if="${m.matchDate().isBefore(#temporals.createNow())}"
+                                          class="fw-bold">
+                                        <span th:text="${m.firstTeam().goals()}"></span>
+                                        -
+                                        <span th:text="${m.secondTeam().goals()}"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+</body>
+</html>

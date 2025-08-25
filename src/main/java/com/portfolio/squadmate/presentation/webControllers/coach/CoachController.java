@@ -1,6 +1,8 @@
 package com.portfolio.squadmate.presentation.webControllers.coach;
 
+import com.portfolio.squadmate.domain.Match;
 import com.portfolio.squadmate.domain.Position;
+import com.portfolio.squadmate.presentation.webControllers.viewModels.MatchesViewModel;
 import com.portfolio.squadmate.presentation.webControllers.viewModels.TeamWithPlayersViewModel;
 import com.portfolio.squadmate.security.CustomUserDetails;
 import com.portfolio.squadmate.service.AuthorizationService;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/coach")
@@ -65,5 +69,16 @@ public class CoachController {
 
             return modelAndView;
         }
+    }
+
+    @GetMapping("/fixtures")
+    public ModelAndView showFixtures(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        List<Match> matches = teamService.findAllMatches(customUserDetails.getId());
+
+        final ModelAndView modelAndView = new ModelAndView("coach/coach-fixtures");
+
+        modelAndView.addObject("matches", MatchesViewModel.from(matches));
+
+        return modelAndView;
     }
 }

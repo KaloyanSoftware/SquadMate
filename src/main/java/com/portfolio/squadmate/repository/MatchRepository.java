@@ -19,4 +19,14 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
             ORDER BY m.matchDate ASC
             """)
     List<Match> getUpcomingMatchesByTeamId(Integer id);
+
+    @Query("""
+            SELECT m
+            FROM Match m
+            LEFT JOIN FETCH m.matchEvents me
+            LEFT JOIN FETCH me.team t
+            LEFT JOIN FETCH t.coach c
+            ORDER BY m.matchDate ASC
+            """)
+    List<Match> getAllMatchesByTeamId(Integer id);
 }
