@@ -7,7 +7,7 @@ public record MatchViewModel(LocalDateTime matchDate, TeamViewModel firstTeam, T
                              String location) {
 
     public static MatchViewModel from(final Match match) {
-        return new MatchViewModel(match.getMatchDate(), TeamViewModel.from(match.getMatchEvents().getFirst())
-                , TeamViewModel.from(match.getMatchEvents().getLast()), match.getLocation());
+        return new MatchViewModel(match.getMatchDate(), TeamViewModel.from(match.getMatchStats().getFirst())
+                , TeamViewModel.from(match.getMatchStats().getLast()), match.getLocation());
     }
 }
