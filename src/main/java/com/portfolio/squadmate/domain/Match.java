@@ -21,6 +21,6 @@ public class Match {
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY)
     private List<MatchAvailability> playerAvailabilities;
 
-    @OneToMany(mappedBy = "match", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<TeamMatch> matchStats;
 }

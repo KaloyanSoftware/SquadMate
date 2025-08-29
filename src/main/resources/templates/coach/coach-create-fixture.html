@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Match | SquadMate</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script defer th:src="@{/js/match-create.js}"></script>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav th:replace="~{fragments/coach-navbar::navigation}"></nav>
+
+<main class="container flex-grow-1 py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h1 class="h4 fw-bold mb-4 text-center">Create New Match</h1>
+
+                    <form id="createMatchForm">
+                        <!-- Match Date -->
+                        <div class="mb-3">
+                            <label for="matchDate" class="form-label">Match Date & Time</label>
+                            <input type="datetime-local" id="matchDate" name="matchDate" class="form-control" required>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Stadium or field name" required>
+                        </div>
+
+                        <!-- Team 2 -->
+                        <div class="mb-3">
+                            <label for="opponentTeam" class="form-label">Opponent Team</label>
+                            <input type="text" id="opponentTeam" name="opponentTeam" class="form-control" placeholder="Enter opponent team name" required>
+                            <div id="team2Feedback" class="form-text text-muted">
+                                If the opponent team is not registered in the app, you’ll still be able to create the match, but details about them won’t be available.
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-plus-circle me-2"></i>Create Match
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer th:insert="~{fragments/footer::footer}" class="mt-auto"></footer>
+
+</body>
+</html>

@@ -24,4 +24,6 @@ public interface TeamRepository extends JpaRepository<Team, Integer> {
             WHERE t.coach.id = :id
             """)
     Optional<Team> getTeamByCoachId(Integer id);
+
+    Optional<Team> findTeamByName(String name);
 }

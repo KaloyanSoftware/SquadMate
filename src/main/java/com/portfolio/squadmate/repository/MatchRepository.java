@@ -12,8 +12,8 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     @Query("""
             SELECT m
             FROM Match m
-            LEFT JOIN FETCH m.matchEvents me
-            LEFT JOIN FETCH me.team t
+            LEFT JOIN FETCH m.matchStats ms
+            LEFT JOIN FETCH ms.team t
             WHERE t.id = :id
                         AND m.matchDate > CURRENT_TIMESTAMP
             ORDER BY m.matchDate ASC
@@ -23,8 +23,8 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
     @Query("""
             SELECT m
             FROM Match m
-            LEFT JOIN FETCH m.matchEvents me
-            LEFT JOIN FETCH me.team t
+            LEFT JOIN FETCH m.matchStats ms
+            LEFT JOIN FETCH ms.team t
             LEFT JOIN FETCH t.coach c
             ORDER BY m.matchDate ASC
             """)

@@ -20,6 +20,10 @@ public class TeamMatch {
     @JoinColumn(name = "match_id", referencedColumnName = "id")
     private Match match;
 
+    // For opponents not in DB
+    @Column(name = "opponent_name")
+    private String opponentName;
+
     private int redCards;
 
     private int yellowCards;
@@ -39,4 +43,9 @@ public class TeamMatch {
     private int lineUpNotes;
 
     private int totalPasses;
+
+    public void setTeam(final Team team){
+        this.team = team;
+        team.getMatchParticipations().add(this);
+    }
 }

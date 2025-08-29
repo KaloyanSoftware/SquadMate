@@ -81,4 +81,10 @@ public class CoachController {
 
         return modelAndView;
     }
+
+    @GetMapping("/addFixture")
+    public ModelAndView showCreateFixture(){
+        final ModelAndView modelAndView = new ModelAndView("/coach/coach-create-fixture");
+        return modelAndView;
+    }
 }

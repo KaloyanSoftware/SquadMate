@@ -3,6 +3,8 @@ package com.portfolio.squadmate.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,8 +23,8 @@ public class Team {
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<Player> players;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<TeamMatch> matchParticipations;
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<TeamMatch> matchParticipations = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     private Coach coach;
