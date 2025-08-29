@@ -90,19 +90,19 @@ INSERT INTO team (name) VALUES ('Silverlake City');  -- id=4
 -- pass: coach3
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
 VALUES ('coach3@squadmate.com',
-        '$2a$12$zSlYQJzE2U2JmGqM0XzTk.UMdzwZAb7hX8t6H.9ZFlCGC5wM6vGiC',
+        '$2a$12$AcHkXI6p5rDD2nbLgZk.4emjlNYTNXMg17a7XzT1V3iwOaaZIVF4G',
         'Michael', 'Johnson', '1975-06-15', NULL);
 
 -- pass: coach4
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
 VALUES ('coach4@squadmate.com',
-        '$2a$12$0auZCNGydHz5ylgGVn0D6eH1hSw/HO9xrhgMZwhOP8QoT38yIbg92',
+        '$2a$12$oOZbdaIND6hlQzkz5OJmDOKFHQGb5uhCzZ65Ktd8mwqpyuoSCGX8K',
         'David', 'Peterson', '1982-09-30', NULL);
 
 -- pass: coach5
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path)
 VALUES ('coach5@squadmate.com',
-        '$2a$12$QIR9F8VXZ0TnDh0Uip80Q.GBzBcxONblhQYhuMn4N0qCZZkJH7Sbm',
+        '$2a$12$Bglj0N3AoC8xPEEXczZ8/OyZ9O/tfKRuqoOny9AZO84DcS1cPYwYy',
         'Stefan', 'Mihaylov', '1988-04-12', NULL);
 
 -- Link coaches to teams
@@ -121,8 +121,8 @@ UPDATE team SET coach_id = 20 WHERE id = 4;
 
 -- Bluefield Rovers players (team 2)
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
-                                                                                                          ('blue1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Liam', 'Walker', '2000-03-10', NULL),
-                                                                                                          ('blue2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Noah', 'Harris', '1999-07-22', NULL);
+                                                                                                          ('blue1@squadmate.com', '$2a$12$5cU78BuDY42R3RRSo9FYeu63SILVPNJmtI68/HpUTDoY4GiLWfS0K', 'Liam', 'Walker', '2000-03-10', NULL),
+                                                                                                          ('blue2@squadmate.com', '$2a$12$sBvabLSk71m4E9YhomPGruZnpLqXB/xB4BxR/QF2HMqLE9nNrmYSq', 'Noah', 'Harris', '1999-07-22', NULL);
 
 INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
                                                                           (21, 1, 'GOALKEEPER', TRUE, 2),
@@ -130,8 +130,8 @@ INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
 
 -- Redstone FC players (team 3)
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
-                                                                                                          ('red1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Oliver', 'Baker', '1998-05-14', NULL),
-                                                                                                          ('red2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'James', 'Young', '2001-12-01', NULL);
+                                                                                                          ('red1@squadmate.com', '$2a$12$8J7ZbYHpoqsQvc7RRvKLlexPxUhUTshbMt.oTI8fqseHTi9TJkZDO', 'Oliver', 'Baker', '1998-05-14', NULL),
+                                                                                                          ('red2@squadmate.com', '$2a$12$4EyazfwdIfaWXpHK9yir2Of.0ZtFaQkZAg4qjnjRwo2hJ8N9mq85y', 'James', 'Young', '2001-12-01', NULL);
 
 INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
                                                                           (23, 1, 'GOALKEEPER', TRUE, 3),
@@ -139,18 +139,18 @@ INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
 
 -- Silverlake City players (team 4)
 INSERT INTO application_user (email, password, first_name, last_name, birth_date, profile_image_path) VALUES
-                                                                                                          ('silver1@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'William', 'Adams', '1997-11-23', NULL),
-                                                                                                          ('silver2@squadmate.com', '$2a$12$uImVMrZ3Y/lTgGPLFlVxzum58d4iEXVqzl9sbCi4ypv2Oukql3Nh.', 'Benjamin', 'Turner', '1999-06-05', NULL);
+                                                                                                          ('silver1@squadmate.com', '$2a$12$tCS8rDBYTbEwtfnlZUZsI.kJevALp9K8uzfUUoeE1OzhY4fmSecRi', 'William', 'Adams', '1997-11-23', NULL),
+                                                                                                          ('silver2@squadmate.com', '$2a$12$OKmqtKPxYWHFCsWNaLXHwuaEJr9hFRdtp7RMa5UFYdYN/gSRLe8oO', 'Benjamin', 'Turner', '1999-06-05', NULL);
 
 INSERT INTO player (id, jersey_number, position, is_starter, team_id) VALUES
                                                                           (25, 1, 'GOALKEEPER', TRUE, 4),
                                                                           (26, 11, 'STRIKER', TRUE, 4);
 
 -- Matches
-INSERT INTO match (id, match_date, location) VALUES
-                                                 (1, '2025-09-20 15:00:00', 'Stadium A'),
-                                                 (2, '2024-09-05 18:00:00', 'Stadium B'),
-                                                 (3, '2024-09-15 20:00:00', 'Stadium C');
+INSERT INTO match (match_date, location) VALUES
+                                                 ('2025-09-20 15:00:00', 'Stadium A'),
+                                                 ('2024-09-05 18:00:00', 'Stadium B'),
+                                                 ('2024-09-15 20:00:00', 'Stadium C');
 
 -- Team_Match (with 0 defaults for all stats)
 INSERT INTO team_match (team_id, match_id, goals, red_cards, yellow_cards, corners, ball_possession, total_shots, shots_on_target, fouls, line_up_notes, total_passes)

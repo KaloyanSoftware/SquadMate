@@ -73,18 +73,26 @@ public class CoachController {
 
     @GetMapping("/fixtures")
     public ModelAndView showFixtures(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
-        List<Match> matches = teamService.findAllMatches(customUserDetails.getId());
 
-        final ModelAndView modelAndView = new ModelAndView("coach/coach-fixtures");
+        if(authorizationService.isCoachWithNoTeam(customUserDetails)){
+            return new ModelAndView("redirect:/coach/createTeam");
+        }else{
+            List<Match> matches = teamService.findAllMatches(customUserDetails.getId());
 
-        modelAndView.addObject("matches", MatchesViewModel.from(matches));
+            final ModelAndView modelAndView = new ModelAndView("coach/coach-fixtures");
 
-        return modelAndView;
+            modelAndView.addObject("matches", MatchesViewModel.from(matches));
+
+            return modelAndView;
+        }
     }
 
     @GetMapping("/addFixture")
-    public ModelAndView showCreateFixture(){
-        final ModelAndView modelAndView = new ModelAndView("/coach/coach-create-fixture");
-        return modelAndView;
+    public ModelAndView showCreateFixture(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        if(authorizationService.isCoachWithNoTeam(customUserDetails)){
+            return new ModelAndView("redirect:/coach/createTeam");
+        }else{
+            return new ModelAndView("/coach/coach-create-fixture");
+        }
     }
 }

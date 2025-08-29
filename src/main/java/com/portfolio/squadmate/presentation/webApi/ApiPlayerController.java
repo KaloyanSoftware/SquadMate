@@ -19,7 +19,7 @@ public class ApiPlayerController{
         this.playerService = playerService;
     }
 
-    @PreAuthorize("@authorizationService.canModifyPlayer(principal, #playerId)")
+    @PreAuthorize("@authorizationService.canModifyPlayer(principal, #id)")
     @PatchMapping("/{id}")
     public ResponseEntity<PlayerDTO> patch(@PathVariable final String id,
                                            @RequestBody final PatchPlayerDTO patchPlayerDTO) {

@@ -7,6 +7,7 @@ import com.portfolio.squadmate.security.CustomUserDetails;
 import com.portfolio.squadmate.service.MatchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ public class ApiMatchController {
         this.matchService = matchService;
     }
 
+    @PreAuthorize("!@authorizationService.isCoachWithNoTeam(principal)")
     @PostMapping
     public ResponseEntity<MatchDTO> post(@AuthenticationPrincipal CustomUserDetails customUserDetails,
                                          @RequestBody AddMatchDTO addMatchDTO){

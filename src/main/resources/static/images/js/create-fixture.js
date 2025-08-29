@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Collect form values
         const matchDate = document.getElementById("matchDate").value;
         const location = document.getElementById("location").value.trim();
-        const team2 = document.getElementById("team2").value.trim();
+        const team2 = document.getElementById("opponentTeam").value.trim();
 
         // Build DTO object
         const addMatchDTO = {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept-Type": "application/json"
+                    "Accept": "application/json"
                 },
                 body: JSON.stringify(addMatchDTO)
             });
@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Optionally reset form
                 form.reset();
+
+                window.location.href = `/coach/fixtures`;
             } else {
                 const errorText = await response.text();
                 showAlert(`Error: ${errorText}`, "danger");
