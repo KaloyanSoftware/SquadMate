@@ -20,9 +20,9 @@ public class TeamMatch {
     @JoinColumn(name = "match_id", referencedColumnName = "id")
     private Match match;
 
-    // For opponents not in DB
-    @Column(name = "opponent_name")
-    private String opponentName;
+    // For teams not in DB
+    @Column(name = "team_name")
+    private String teamName;
 
     private int redCards;
 
@@ -46,6 +46,7 @@ public class TeamMatch {
 
     public void setTeam(final Team team){
         this.team = team;
+        this.teamName = team.getName();
         team.getMatchParticipations().add(this);
     }
 }

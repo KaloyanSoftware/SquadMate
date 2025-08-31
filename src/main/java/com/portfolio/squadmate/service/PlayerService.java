@@ -46,13 +46,6 @@ public class PlayerService{
         return playerRepository.save(player);
     }
 
-    public List<Match> findUpcomingMatches(final Integer playerId){
-        Player player = playerRepository.getPlayerByIdWithTeam(playerId).orElseThrow();
-        Team team = player.getTeam();
-
-        return matchRepository.getUpcomingMatchesByTeamId(team.getId());
-    }
-
     public Player patchPlayer(final Integer id, final int jerseyNumber, final Position position, final boolean isStarter){
         final Player player = playerRepository.getPlayerByIdWithTeam(id).orElseThrow();
 

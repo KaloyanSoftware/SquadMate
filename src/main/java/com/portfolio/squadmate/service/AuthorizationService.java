@@ -38,6 +38,8 @@ public class AuthorizationService {
         return false;
     }
 
+
+
     private boolean noTeam(final Coach coach){
         return coach.getTeam() == null;
     }

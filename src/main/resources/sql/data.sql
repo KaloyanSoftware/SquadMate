@@ -153,11 +153,11 @@ INSERT INTO match (match_date, location) VALUES
                                                  ('2024-09-15 20:00:00', 'Stadium C');
 
 -- Team_Match (with 0 defaults for all stats)
-INSERT INTO team_match (team_id, match_id, goals, red_cards, yellow_cards, corners, ball_possession, total_shots, shots_on_target, fouls, line_up_notes, total_passes)
+INSERT INTO team_match (team_id, match_id, team_name, goals, red_cards, yellow_cards, corners, ball_possession, total_shots, shots_on_target, fouls, line_up_notes, total_passes)
 VALUES
-    (1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    (2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    (1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    (2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    (1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-    (2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    (1, 1, 'Greenfield United',0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 1, 'Bluefield Rovers',0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (3, 2, 'Redstone FC',3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (1, 2,'Greenfield United' ,5, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (4, 3,'Silverlake City' ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    (2, 3,'Bluefield Rovers' ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

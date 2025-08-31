@@ -24,7 +24,7 @@ public class ApiMatchController {
         this.matchService = matchService;
     }
 
-    @PreAuthorize("!@authorizationService.isCoachWithNoTeam(principal)")
+    @PreAuthorize("@authorizationService.isCoach(principal)")
     @PostMapping
     public ResponseEntity<MatchDTO> post(@AuthenticationPrincipal CustomUserDetails customUserDetails,
                                          @RequestBody AddMatchDTO addMatchDTO){

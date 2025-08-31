@@ -1,5 +1,13 @@
 #@no-cookie-jar
 #@no-redirect
-DELETE http://localhost:8080/api/team/players/17
-Cookie: JSESSIONID=E4340154447A8DC705ED0F0974066F2D
+POST http://localhost:8080/api/match
+Content-Type: application/json
+Accept: application/json
+Cookie: JSESSIONID=3FE2611F0AFCFF31CCEC725B40EBF39B
+
+{
+  "matchDate": "2025-09-01T15:30:00",
+  "location": "Stadium of Light",
+  "opponentTeam": "Red Hawks"
+}
 

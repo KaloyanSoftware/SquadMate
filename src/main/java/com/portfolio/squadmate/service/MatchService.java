@@ -56,7 +56,7 @@ public class MatchService {
         teamRepository.findTeamByName(opponentTeam)
                 .ifPresentOrElse(
                         opponentTeamMatch::setTeam,
-                        () -> opponentTeamMatch.setOpponentName(opponentTeam)
+                        () -> opponentTeamMatch.setTeamName(opponentTeam)
                 );
 
         // Add both TeamMatch entities to the match
