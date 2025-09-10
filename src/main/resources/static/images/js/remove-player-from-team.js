@@ -1,3 +1,4 @@
+import {csrfHeader, csrfToken} from "./utility/csrf.js";
 
 const removeForms = document.querySelectorAll(".removeForm");
 
@@ -19,7 +20,10 @@ removeForms.forEach(form => {
 
         try {
             const response = await fetch(`/api/team/players/${playerId}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers:{
+                    [csrfHeader]: csrfToken
+                }
             });
 
             if (response.status === 204) {

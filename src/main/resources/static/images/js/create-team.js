@@ -1,3 +1,5 @@
+import {csrfHeader, csrfToken} from "./utility/csrf.js";
+
 const form = document.getElementById('createTeamForm');
 
 form.addEventListener("submit", async event => {
@@ -20,7 +22,8 @@ form.addEventListener("submit", async event => {
             method: 'POST',
             headers: {
                 "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                [csrfHeader]: csrfToken
             },
             body: jsonBody
         });

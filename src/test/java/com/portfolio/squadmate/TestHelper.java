@@ -34,14 +34,11 @@ public class TestHelper {
         userRepository.deleteAll();
     }
 
-    public Coach createCoachUser(){
+    public Coach createCoachUser(final String email){
         final User user = new Coach();
-        user.setEmail("testCoach1@gmail.com");
+        user.setEmail(email);
         //pass: testcoach1
-        user.setPassword("$2a$12$vfSc.ETeOWUxsiDw5eqyNu/pYoChpQb1GhF4W02GOnl/LRwitBCxm");
-        user.setFirstName("John");
-        user.setLastName("Smith");
-        user.setBirthDate(LocalDate.of(1987, 3, 2));
+        user.setPassword("1234");
         return (Coach) userRepository.save(user);
     }
 

@@ -1,3 +1,5 @@
+import {csrfHeader, csrfToken} from "./utility/csrf.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("createMatchForm");
 
@@ -21,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Accept": "application/json",
+                    [csrfHeader]: csrfToken
                 },
                 body: JSON.stringify(addMatchDTO)
             });

@@ -41,7 +41,6 @@ public class SecurityConfig {
                                 response.sendRedirect("/login");
                             }
                         }))
-                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()

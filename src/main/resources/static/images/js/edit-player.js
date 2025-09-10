@@ -1,3 +1,5 @@
+import {csrfHeader, csrfToken} from "./utility/csrf.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const editButtons = document.querySelectorAll(".edit-btn");
     const editForm = document.getElementById("editPlayerForm");
@@ -62,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Accept": "application/json",
+                    [csrfHeader]: csrfToken
                 },
                 body: JSON.stringify(payload)
             });

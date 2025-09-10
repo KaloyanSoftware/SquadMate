@@ -1,3 +1,5 @@
+import {csrfHeader, csrfToken} from "./utility/csrf.js";
+
 const form = document.querySelector("#addPlayerForm");
 
 form.addEventListener("submit",async event =>{
@@ -17,7 +19,8 @@ form.addEventListener("submit",async event =>{
             method: 'PATCH',
             headers: {
                 "Accept": "application/json",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                [csrfHeader]: csrfToken
             },
             body: jsonBody
         })
