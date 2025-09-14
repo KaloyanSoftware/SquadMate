@@ -21,7 +21,7 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<TeamMatch> matchParticipations = new ArrayList<>();

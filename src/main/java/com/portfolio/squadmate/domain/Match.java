@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,8 @@ public class Match {
     private String location;
 
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY)
-    private List<MatchAvailability> playerAvailabilities;
+    private List<MatchAvailability> playerAvailabilities = new ArrayList<>();
 
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<TeamMatch> matchStats;
+    private List<TeamMatch> matchStats = new ArrayList<>();
 }

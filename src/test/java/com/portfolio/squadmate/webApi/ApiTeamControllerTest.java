@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.TestExecutionEvent;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
@@ -34,7 +35,7 @@ public class ApiTeamControllerTest {
     }
 
     @Test
-    @WithUserDetails("testCoach1@gmail.com")
+    @WithUserDetails(value="testCoach1@gmail.com", setupBefore = TestExecutionEvent.TEST_EXECUTION)
     public void shouldCreateTeam() throws Exception {
         //Arrange
         final var request = post("/api/team")
@@ -52,7 +53,7 @@ public class ApiTeamControllerTest {
         //Assert
         response.andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect((ResultMatcher) jsonPath("$.teamName").value("TestTeam"));
+                .andExpect((ResultMatcher) jsonPath("$.name").value("TestTeam"));
 
     }
 
